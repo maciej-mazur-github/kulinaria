@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>szczegóły przepisu</title>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <nav class="nav general-edition-navigation">
+        <a class="nav-link btn btn-primary btn-sm"
+           href="#"
+           th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).backToRecipesListWithFiltersAndSorting()}"
+           th:href="@{${linkCreator}}"
+           th:text="|Powrót do przepisów kategorii ${recipe.category.name}|">
+            Active
+        </a>
+        <a class="nav-link btn btn-primary btn-sm"
+           href="#"
+           th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditLink()}"
+           th:href="@{${linkCreator}}">
+            Edytuj przepis
+        </a>
+        <a class="nav-link btn btn-primary btn-sm"
+           href="#"
+           th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                                .createDeleteInRecipeDetailsLink(recipe.title, recipe.id)}"
+           th:href="@{${linkCreator}}">
+            Usuń przepis
+        </a>
+    </nav>
+
+
+    <div class="container general-edition-all-fields-container">
+        <div class="container text-center general-edition-all-fields">
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-left ">
+                    <div class="recipe-title-time">
+                        <h2 th:text="${recipe.title}"></h2>
+                        <div class="votes-time-type">
+                            <div class="prep-time">
+                                <i class="bi bi-clock"></i>
+                                <span th:text="|${recipe.prepTime} min.|"></span>
+                            </div>
+                            <div class="meal-type">
+                                <span th:text="|Kategoria: ${recipe.category.name}|"></span>
+                            </div>
+                            <div class="meal-type">
+                                <span th:if="${recipe.mealType}" th:text="|Typ dania: ${recipe.mealType.translation.toLowerCase()}|"></span>
+                            </div>
+                        </div>
+                        <div class="voting">
+                            <form th:action="@{|/glosuj?id=${recipe.id}&vote=up|}" method="post">
+                                <button class="vote-button"><i class="bi bi-hand-thumbs-up-fill"></i></button>
+                            </form>
+
+                            <span th:text="|Głosy: ${recipe.vote.result}|"></span>
+
+                            <form th:action="@{|/glosuj?id=${recipe.id}&vote=down|}" method="post" >
+                                <button class="vote-button"><i class="bi bi-hand-thumbs-down-fill vote-down"></i></button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl ">
+                    <img  th:if="${recipe.imageUrl ne null}"
+                          th:src="${recipe.imageUrl}" alt="zdjęcie potrawy" id="image-to-change" class="img-fluid ">
+                    <img th:if="${recipe.imageUrl eq null}"
+                         th:src="@{/recipes/empty-photo.jpg}" id="empty-image-to-change" alt="pusta grafika" class="img-fluid">
+                </div>
+            </div>
+            <div class="row general-edition-content-row">
+                <div class="col-xl general-edition-ingredients">
+                    <div class="general-edition-ingredients-border">
+                        <div class="ingredients">
+                            <h3>Składniki</h3>
+                            <ul class="recipe-details-ul">
+                                <li th:each="ingredient: ${recipe.ingredients}"
+                                    class="recipe-details-ingredient">
+                                    <span th:text="${ingredient.name}"
+                                          class="recipe-details-ingredient-name"></span>
+                                    <span class="recipe-details-dots"></span>
+                                    <span th:text="${ingredient.amount.amountValue}"
+                                          class="recipe-details-amount"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl">
+                    <div class="general-edition-description">
+                        <div class="description">
+                            <h3>Sposób przygotowania potrawy</h3>
+                            <ul>
+                                <li th:each="pair: ${recipeStepDescriptionPairs.pairs}">
+                                    <h4 th:text="${pair.stepName}"></h4>
+                                    <span th:text="${pair.stepDescription}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

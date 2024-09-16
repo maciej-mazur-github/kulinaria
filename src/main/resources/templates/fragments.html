@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="header">
+    <div class="container-lg header">
+        <a th:href="@{/}"
+           href="/">
+            <div class="header-text">
+                <h2>Kulinaria</h2>
+                <p>Tutaj znajdziesz swój ulubiony przepis kulinarny!</p>
+            </div>
+        </a>
+        <div class="logo-buttons">
+            <a th:href="@{/przepis/dodaj}" href="" class="btn btn-primary">Dodaj nowy przepis</a>
+            <a th:href="@{/kategorie}" href="" class="btn btn-primary">Wyświetl kategorie potraw</a>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

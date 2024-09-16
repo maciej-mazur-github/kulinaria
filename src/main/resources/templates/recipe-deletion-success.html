@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>usunięto przepis</title>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <div class="container general-edition-all-fields-container deletion-confirmation-main-content">
+        <div class="container text-center general-edition-all-fields">
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-center ">
+                    <h1>Z powodzeniem usunięto przepis</h1>
+                </div>
+            </div>
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-center ">
+                    <h2 th:text="${recipeTitle}"></h2>
+                </div>
+            </div>
+            <div class="row general-edition-content-row">
+                <div class="col-xl general-edition-ingredients">
+                    <nav class="nav general-edition-navigation">
+                        <a class="nav-link btn btn-primary btn-sm"
+                           href="#"
+                           th:href="@{/}">
+                            Powrót do strony głównej
+                        </a>
+                        <a class="nav-link btn btn-primary btn-sm"
+                           th:with="pageSize=${T(com.kulinaria.utils.LinkCreator).PAGE_SIZE}"
+                           th:href="@{|/kategorie/${category.urlName}?size=${pageSize}|}"
+                           th:text="|Powrót do listy przepisów z kategorii ${category.name}|">
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

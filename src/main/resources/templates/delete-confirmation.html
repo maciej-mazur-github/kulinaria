@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Przepisegro - potwierdzenie usunięcia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css" th:href="@{/style.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+
+<div class="container-lg header">
+    <a th:href="@{/}"
+       href="/">
+        <div class="header-text">
+            <h2>Przepisegro</h2>
+            <p>Tutaj znajdziesz swój ulubiony przepis kulinarny!</p>
+        </div>
+    </a>
+    <div class="logo-buttons">
+        <a th:href="@{/przepis/dodaj}" href="" class="btn btn-primary">Dodaj nowy przepis</a>
+        <a th:href="@{/kategorie}" href="" class="btn btn-primary">Wyświetl kategorie potraw</a>
+    </div>
+</div>
+
+
+<div class="container general-edition-all-fields-container deletion-confirmation-main-content">
+    <div class="container text-center general-edition-all-fields">
+        <div class="row general-edition-content-row">
+            <div class="col-xl text-center ">
+                <h1>Czy na pewno chcesz usunąć poniższy przepis?</h1>
+            </div>
+        </div>
+        <div class="row general-edition-content-row">
+            <div class="col-xl general-edition-ingredients">
+                <div class="deletion-confirmation-title-img">
+                    <h2 th:text="${recipe.title}"></h2>
+                    <img  th:if="${recipe.imageUrl ne null}"
+                          th:src="${recipe.imageUrl}"
+                          alt="zdjęcie potrawy"
+                          id="image-to-change"
+                          class="img-fluid deletion-confirmation-img">
+                    <img th:if="${recipe.imageUrl eq null}"
+                         th:src="@{/recipes/empty-photo.jpg}"
+                         id="empty-image-to-change"
+                         class="img-fluid deletion-confirmation-img"
+                         alt="pusta grafika">
+                </div>
+            </div>
+        </div>
+        <div class="row general-edition-content-row">
+            <div class="col-xl general-edition-ingredients">
+                <form th:action="@{/usun-przepis-z-bazy}"
+                      method="post"
+                      action=""
+                      class="deletion-confirmation-form">
+
+                    <input type="hidden" th:field="${recipe.id}">
+                    <input type="hidden" th:field="${recipe.title}">
+                    <input type="hidden" th:field="${recipe.category}">
+
+                    <button type="submit" class="btn btn-primary btn-sm">Tak, usuń przepis z bazy</button>
+                    <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).backFromDeletionConfirmationLink()}"
+                       th:href="@{${linkCreator}}"
+                       href="" class="btn btn-primary btn-sm">
+                        Powrót do ogólnego widoku edycji
+                    </a>
+                    <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                .backToNormalRecipeDetailsViewInDeletionConfirmationLink()}"
+                       th:href="@{${linkCreator}}"
+                       href="" class="btn btn-primary btn-sm">
+                        Powrót do ogólnego widoku przepisu
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>tryb edycji</title>
+    <script>
+        function changeImage() {
+            document.getElementById("image-change-form").submit();
+        }
+    </script>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <div class="general-edition-navigation">
+        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                                .backToNormalRecipeDetailsViewLink()}"
+           th:href="@{${linkCreator}}"
+           href=""
+           class="btn btn-primary ">
+            Powrót do normalnego widoku przepisu
+        </a>
+        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                                .createDeleteLinkInEditionMode()}"
+           th:href="@{${linkCreator}}"
+           href=""
+           class="btn btn-primary ">
+            Usuń przepis z bazy
+        </a>
+    </div>
+
+
+    <div class="container general-edition-all-fields-container">
+        <div class="container text-center general-edition-all-fields">
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-left ">
+                    <div class="recipe-title-time">
+                        <h2 th:text="${recipe.title}"></h2>
+                        <div class="votes-time-type">
+                            <div class="prep-time">
+                                <i class="bi bi-clock"></i>
+                                <span th:text="|${recipe.prepTime} min.|"></span>
+                            </div>
+                            <div class="meal-type">
+                                <span th:text="|Kategoria: ${recipe.category.name}|"></span>
+                            </div>
+                            <div class="meal-type">
+                                <span th:if="${recipe.mealType}" th:text="|Typ dania: ${recipe.mealType.translation.toLowerCase()}|"></span>
+                            </div>
+                        </div>
+                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditTitleTimeTypeLink()}"
+                           th:href="@{${linkCreator}}"
+                           href="" class="btn btn-primary save-recipe-btn">
+                            Edytuj
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-xl ">
+                    <form th:action="@{/zapisz-zdjecie}"
+                          th:object="${recipe}"
+                          id="image-change-form"
+                          method="post"
+                          enctype="multipart/form-data"
+                          class="img-change-form">
+                        <img  th:if="*{imageUrl ne null}"
+                              th:src="*{imageUrl}" alt="zdjęcie potrawy" id="image-to-change" class="img-fluid ">
+                        <img th:if="*{imageUrl eq null}"
+                             th:src="@{/recipes/empty-photo.jpg}" id="empty-image-to-change" alt="pusta grafika" class="img-fluid">
+
+                        <input type="file" id="avatar" name="avatar" accept="image/*" hidden="hidden" onchange="changeImage()" />
+                        <input type="hidden" th:field="*{id}">
+                        <label for="avatar" class="btn btn-primary btn-sm" id="change-image">Zmień zdjęcie...</label>
+                    </form>
+                </div>
+            </div>
+            <div class="row general-edition-content-row">
+                <div class="col-xl general-edition-ingredients">
+                    <div class="general-edition-ingredients-border">
+                        <div class="ingredients">
+                            <h3>Składniki</h3>
+                            <ul class="recipe-details-ul">
+                                <li th:each="ingredient: ${recipe.ingredients}"
+                                    class="recipe-details-ingredient">
+                                    <span th:text="${ingredient.name}"
+                                          class="recipe-details-ingredient-name"></span>
+                                    <span class="recipe-details-dots"></span>
+                                    <span th:text="${ingredient.amount.amountValue}"
+                                          class="recipe-details-amount"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditIngredientsLink()}"
+                           th:href="@{${linkCreator}}"
+                           href="" class="btn btn-primary save-recipe-btn">
+                            Edytuj
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl">
+                    <div class="general-edition-description">
+                        <div class="description">
+                            <h3>Sposób przygotowania potrawy</h3>
+                            <ul>
+                                <li th:each="pair: ${recipeStepDescriptionPairs.pairs}">
+                                    <h4 th:text="${pair.stepName}"></h4>
+                                    <span th:text="${pair.stepDescription}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditRecipeStepsLink()}"
+                           th:href="@{${linkCreator}}"
+                           href="" class="btn btn-primary save-recipe-btn">
+                            Edytuj
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

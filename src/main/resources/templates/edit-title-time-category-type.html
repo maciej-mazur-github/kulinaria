@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>edycja główna</title>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <nav class="nav general-edition-navigation">
+        <a class="nav-link btn btn-primary btn-sm"
+           href="#"
+           th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                                .backFromEditTitleTimeTypeLink()}"
+           th:href="@{${linkCreator}}">
+            Powrót do ogólnego widoku edycji
+        </a>
+    </nav>
+
+    <form th:action="@{/zapisz-tytul-kategorie-czas-typ}"
+          action=""
+          method="post"
+          th:object="${recipe}">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="container general-edition-all-fields-container">
+            <div class="container text-center general-edition-all-fields edit-title-category-time-type-form">
+                <div class="row general-edition-content-row">
+                    <div class="col-lg text-center ">
+                        <textarea th:field="*{title}" cols="50" rows="2" placeholder="Podaj tytuł przepisu..."></textarea>
+                    </div>
+                </div>
+                <div class="row general-edition-content-row">
+                    <div class="col-lg general-edition-ingredients">
+                        <select class="form-select form-select-lg mb-3"
+                                aria-label="Large select example"
+                                name="categoryEnum"
+                                th:with="currentCategory=*{category}"
+                                required>
+                            <option selected value="">Wybierz kategorię potrawy</option>
+                            <option th:each="catName: ${T(com.kulinaria.category.CategoryEnum).values()}"
+                                    th:value="${catName}"
+                                    th:text="${catName.dbName}"
+                                    th:selected="${currentCategory.name eq catName.dbName}"
+                                    value="1">One
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg general-edition-ingredients">
+                        <div class="prep-time">
+                            <i class="bi bi-clock"></i>
+                            <div>
+                                <input type="number" th:field="*{prepTime}" class="prep-time-edit">
+                                <span>min.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg general-edition-ingredients">
+                        <select class="form-select form-select-lg mb-3"
+                                aria-label="Large select example"
+                                th:field="*{mealType}"
+                                th:with="currentMealType=*{mealType}" required>
+                            <option selected value="">Wybierz typ dania</option>
+                            <block th:each="type: ${T(com.kulinaria.shared.MealType).values()}">
+                                <option th:value="${type}"
+                                        th:text="${type.translation}"
+                                        th:selected="${currentMealType eq type}"
+                                        value="1">One
+                                </option>
+                            </block>
+                        </select>
+                    </div>
+                </div>
+                <div class="row general-edition-content-row">
+                    <div class="col-lg text-center">
+                        <button class="btn btn-primary save-recipe-btn">Zapisz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>

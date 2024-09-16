@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>przepisy kategorii</title>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <div class="container general-edition-all-fields-container">
+        <div class="container text-center general-edition-all-fields">
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-left ">
+                    <div class="category-logo">
+                        <img th:src="${category.imageUrl}" alt="kolacja" class="recipe-list-category-img">
+                        <h2 th:text="${category.name.toUpperCase()}"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row general-edition-content-row "
+                 th:with="mealType=${T(com.kulinaria.shared.MealType)}">
+                <div class="col-xl general-edition-ingredients">
+                    <div>
+                        <div class="filters-title">
+                            <span>Filtrowanie:</span>
+                            <a href=""
+                               th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                    .createLinkToCategoryRecipes('mealType', null)}"
+                               th:href="@{${linkCreator}}">
+                                Wyczyść filtry
+                            </a>
+                        </div>
+                        <div class="filters-content">
+                            <div class="btn-group filter-sort-buttons">
+                                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                    .createLinkToCategoryRecipes('mealType', mealType.MEAT.urlTranslation)}"
+                                   th:href="@{${linkCreator}}"
+                                   href="#" class="btn btn-success"
+                                   th:classappend="${filters.mealType eq mealType.MEAT.urlTranslation ? 'active' : ''}">
+                                    Mięsne
+                                </a>
+                                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                    .createLinkToCategoryRecipes('mealType', mealType.VEGETARIAN.urlTranslation)}"
+                                   th:href="@{${linkCreator}}"
+                                   href="#" class="btn btn-success "
+                                   th:classappend="${filters.mealType eq mealType.VEGETARIAN.urlTranslation ? 'active' : ''}">
+                                    Wegetariańskie
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-1">
+
+                </div>
+                <div class="col-xl">
+                    <div>
+                        <div class="sort-title">
+                            <span>Sortowanie:</span>
+                        </div>
+                        <div class="sort-content">
+                            <div class="btn-group filter-sort-buttons">
+                                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                            .createLinkToCategoryRecipes('sort', filters.SORT_BY_TITLE_PARAM)}"
+                                   th:href="@{${linkCreator}}"
+                                   th:classappend="${pageable.getSort().getOrderFor(filters.SORT_BY_TITLE_PARAM) ne null  ? 'active' : ''}"
+                                   href="#"
+                                   class="btn btn-success">
+                                    Tytuł
+                                </a>
+                                <a href="#"
+                                   class="btn btn-success "
+                                   th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                            .createLinkToCategoryRecipes('sort', filters.SORT_BY_VOTES_PARAM)}"
+                                   th:href="@{${linkCreator}}"
+                                   th:classappend="${pageable.getSort().getOrderFor(filters.SORT_BY_VOTES_PARAM) ne null ? 'active' : ''}">
+                                    Liczba głosów
+                                </a>
+                                <a href="#"
+                                   class="btn btn-success "
+                                   th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                            .createLinkToCategoryRecipes('sort', filters.SORT_BY_TIME_PARAM)}"
+                                   th:href="@{${linkCreator}}"
+                                   th:classappend="${pageable.getSort().getOrderFor(filters.SORT_BY_TIME_PARAM) ne null  ? 'active' : ''}">
+                                    Czas przygotowania
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row general-edition-content-row d-flex align-items-end">
+                <div class="col-xl-6 text-center d-flex flex-row justify-content-center">
+                    <div class="number-of-recipes">
+                        <span th:text="|Przepisy (${page.totalElements})|"></span>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 text-center d-flex flex-row justify-content-center">
+                    <div class="recipes-pagination d-flex justify-content-center">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                                <li class="page-item"
+                                    th:classappend="${pageable.pageNumber eq 0 ? 'disabled' : ''}">
+                                    <a class="page-link"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', pageable.pageNumber)}"
+                                       th:href="@{${linkCreator}}">Poprzednia</a>
+                                </li>
+                                <li class="page-item"
+                                    th:classappend="${pageable.pageNumber eq 0 ? 'active' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', 1)}"
+                                       th:href="@{${linkCreator}}">
+                                        1
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    th:if="${page.totalPages eq 3}"
+                                    th:classappend="${(pageable.pageNumber + 1) eq 2 ? 'active' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', 2)}"
+                                       th:href="@{${linkCreator}}">
+                                        2
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    th:if="${page.totalPages gt 3 and (pageable.pageNumber eq 0 or pageable.pageNumber eq 1)}"
+                                    th:each="i: ${#numbers.sequence(2, 3)}"
+                                    th:classappend="${i eq (pageable.pageNumber + 1) ? 'active' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:text="${i}"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', i)}"
+                                       th:href="@{${linkCreator}}">
+                                        1
+                                    </a>
+                                </li>
+                                <li class="page-item disabled"
+                                    th:if="${page.totalPages ge 5 and  (pageable.pageNumber eq 0 or pageable.pageNumber eq 1)}">
+                                    <a class="page-link" href="#">
+                                        ...
+                                    </a>
+                                </li>
+                                <li class="page-item disabled"
+                                    th:if="${page.totalPages ge 5 and pageable.pageNumber ge 3}">
+                                    <a class="page-link" href="#">
+                                        ...
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    th:if="${page.totalPages ge 4 and pageable.pageNumber ge 2 and (page.totalPages - pageable.pageNumber) ge 3}"
+                                    th:each="i: ${#numbers.sequence(pageable.pageNumber, pageable.pageNumber + 2)}"
+                                    th:classappend="${i eq (pageable.pageNumber + 1) ? 'active' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:text="${i}"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', i)}"
+                                       th:href="@{${linkCreator}}">
+                                        1
+                                    </a>
+                                </li>
+                                <li class="page-item disabled"
+                                    th:if="${page.totalPages ge 5 and pageable.pageNumber ge 2 and (page.totalPages - pageable.pageNumber) ge 4}">
+                                    <a class="page-link" href="#">
+                                        ...
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    th:if="${page.totalPages ge 4 and pageable.pageNumber ge 2 and (page.totalPages - pageable.pageNumber) lt 3}"
+                                    th:each="i: ${#numbers.sequence(pageable.pageNumber, page.totalPages - 1)}"
+                                    th:classappend="${i eq (pageable.pageNumber + 1) ? 'active' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:text="${i}"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', i)}"
+                                       th:href="@{${linkCreator}}">
+                                        1
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    th:classappend="${pageable.pageNumber eq (page.totalPages - 1) ? 'active' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:text="${page.totalPages}"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createLinkToCategoryRecipes('page', page.totalPages)}"
+                                       th:href="@{${linkCreator}}">
+                                        1
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    th:classappend="${pageable.pageNumber eq (page.totalPages - 1) ? 'disabled' : ''}">
+                                    <a class="page-link"
+                                       href="#"
+                                       th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                            .createLinkToCategoryRecipes('page', pageable.pageNumber + 2)}"
+                                       th:href="@{${linkCreator}}">
+                                        Następna
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-center">
+                    <a th:href="@{/przepis/dodaj}"
+                       class="btn btn-primary"
+                       href="">
+                        Dodaj nowy przepis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container general-edition-all-fields-container">
+        <div class="container text-center general-edition-all-fields"
+             th:each="recipe: ${page.content}">
+            <a href=""
+               class="recipe-link"
+               th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createRecipeLink(recipe.title, recipe.id)}"
+               th:href="@{${linkCreator}}">
+                <div class="row general-edition-content-row">
+                    <div class="col-xl-6 recipe-list-title ">
+                        <span th:text="${recipe.title}" class="recipe-title"></span>
+                    </div>
+                    <div class="col-xl recipe-list-time">
+                        <div class="prep-time">
+                            <i class="bi bi-clock"></i>
+                            <span th:text="|${recipe.prepTime} min.|"></span>
+                        </div>
+                    </div>
+                    <div class="col-xl recipe-list-img">
+                        <img th:src="${recipe.imageUrl}" src="" alt="" class="img-fluid recipe-img">
+                    </div>
+                </div>
+            </a>
+            <div class="row general-edition-content-row">
+                <div class="col-xl text-left recipe-list-vote-column">
+                    <div class="voting">
+                        <span th:text="|Głosy: ${recipe.vote.result}|"></span>
+                    </div>
+                </div>
+                <div class="col-xl text-left recipe-list-edit-delete-buttons">
+                    <div class="recipe-buttons">
+                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditLinkInRecipesList(recipe)}"
+                           th:href="@{${linkCreator}}"
+                           class="btn btn-primary btn-sm"
+                           href="">
+                            Edytuj
+                        </a>
+
+                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                                .createDeleteLink(recipe.title, recipe.id)}"
+                           th:href="@{${linkCreator}}"
+                           href=""
+                           class="btn btn-primary btn-sm">
+                            Usuń
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

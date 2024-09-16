@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>strona główna</title>
+</head>
+<body>
+
+
+<main layout:fragment="content">
+
+    <div class="container-lg main-home-content">
+        <a th:href="@{/kategorie}" href="/kategorie" class="show-all-categories">Zobacz wszystkie dostępne przepisy</a>
+        <h1 style="text-align: center" class="mt-4">NAJPOPULARNIEJSZE PRZEPISY</h1>
+
+        <div class="top4-list">
+            <a th:each="recipe: ${top4Recipes}"
+               class="top4-recipe recipe-item"
+               th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        .createTop4HomeLink(recipe.category.name, recipe.title, recipe.id)}"
+               th:href="@{${linkCreator}}"
+               href="#">
+                <div class="container text-center">
+                    <div class="row d-flex align-items-center home-page-row">
+                        <div class="col-lg">
+                            <div>
+                                <h2 th:text="|${recipe.title}|"></h2>
+                                <p th:text="|Liczba głosów: ${recipe.vote.result}|"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg">
+                            <img th:src="${recipe.imageUrl}" th:alt="|recipe${recipe.id}|" class="top4-image">
+                        </div>
+                    </div>
+                </div>
+
+            </a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

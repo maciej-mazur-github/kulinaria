@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Przepisegro - stwórz przepis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css" th:href="@{/style.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+<div class="container-lg header">
+    <a th:href="@{/}"
+       href="/">
+        <div class="header-text">
+            <h2>Przepisegro</h2>
+            <p>Tutaj znajdziesz swój ulubiony przepis kulinarny!</p>
+        </div>
+    </a>
+    <div class="logo-buttons">
+        <a th:href="@{/przepis/dodaj}" href="" class="btn btn-primary">Dodaj nowy przepis</a>
+        <a th:href="@{/kategorie}" href="" class="btn btn-primary">Wyświetl kategorie potraw</a>
+    </div>
+</div>
+
+<form th:action="@{/przepis/dodaj}" action="" method="post">
+    <div class="container text-center create-title-cat-fields">
+        <div class="row">
+            <div class="col-lg">
+                <textarea name="recipeTitle" cols="50" rows="2" placeholder="Podaj tytuł przepisu..." required></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <select class="form-select form-select-lg mb-3"
+                        aria-label="Large select example"
+                        name="categoryFromForm"
+                        required>
+                    <option selected value="">Wybierz kategorię potrawy</option>
+                    <option th:each="catName: ${T(com.kulinaria.category.CategoryEnum).values()}"
+                            th:value="${catName}"
+                            th:text="${catName.dbName}"
+                            value="1">One
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-lg-end">
+            <div class="col-lg">
+                <button type="submit" class="btn btn-primary">Dodaj nowy przepis do bazy i przejdź do edycji</button>
+            </div>
+            <div class="col-lg">
+                <a th:href="@{/}" href="" class="btn btn-primary">Rezygnuję</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
