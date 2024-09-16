@@ -4,9 +4,11 @@ import com.kulinaria.shared.MealType;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class TestDataCreator {
     private static final String DB_RELATIVE_PATH = "/src/main/resources/db/";
@@ -25,6 +27,7 @@ public class TestDataCreator {
     private final String ingredientsOutputFile = System.getProperty("user.dir") + DB_RELATIVE_PATH + "ingredient.sql";
     private final String amountsOutputFile = System.getProperty("user.dir") + DB_RELATIVE_PATH + "amount.sql";
     private final String votesOutputFile = System.getProperty("user.dir") + DB_RELATIVE_PATH + "vote.sql";
+    private final String preparationStepsOutputFile = System.getProperty("user.dir") + DB_RELATIVE_PATH + "preparation_step.sql";
 
     public static void main(String[] args) {
         TestDataCreator testDataCreator = new TestDataCreator();
@@ -32,9 +35,38 @@ public class TestDataCreator {
     }
     private void createTestDataSqlFiles() {
         createCategorySqlFile();
-        createRecipesSqlFile();
+        createRecipesSqlFileAndPreparationStepsSqlFile();
         createIngredientsAndAmountsSqlFile();
         createVotesSqlFile();
+    }
+
+    private void createRecipesSqlFileAndPreparationStepsSqlFile() {
+        try (
+                var fileReader = new FileReader(recipesInputFile);
+                var reader = new BufferedReader(fileReader)) {
+            List<String> recipeQueryList = new ArrayList<>();
+            List<String> preparationStepsQueryList = new ArrayList<>();
+            String nextLine;
+            int recipeCounter = 1;
+            while ((nextLine = reader.readLine()) != null) {
+                if (!nextLine.isEmpty()) {
+                    String title = nextLine;
+                    int recipeId = Integer.parseInt(reader.readLine());
+                    int prepTime = Integer.parseInt(reader.readLine());
+                    int categoryId = Integer.parseInt(reader.readLine());
+                    String mealType = readMealType(reader.readLine());
+                    List<String> preparationSteps = readRecipeDescription(reader);
+                    String imageUrl = String.format("%srecipe%d.jpg", RECIPE_RELATIVE_IMAGE_PATH, recipeId);
+                    addRecipeSqlQuery(recipeQueryList, title, prepTime, imageUrl, categoryId, mealType);
+                    addPreparationStepsSqlQuery(preparationStepsQueryList, preparationSteps, recipeCounter++);
+                }
+            }
+            saveQueryListToFile(recipeQueryList, recipesOutputFile);
+            saveQueryListToFile(preparationStepsQueryList, preparationStepsOutputFile);
+            renameRecipeImageFiles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addVoteToQueryList(String nextLine, List<String> votesQueryList) {
@@ -117,17 +149,17 @@ public class TestDataCreator {
         }
     }
 
-    private String readRecipeDescription(BufferedReader reader) throws IOException {
+    private List<String> readRecipeDescription(BufferedReader reader) throws IOException {
         String description = "";
         String nextLine;
         while ((!LINE_SEPARATOR.equals(nextLine = reader.readLine())) && (nextLine != null)) {
             description += nextLine.replaceAll("'", "''");
             description += "\n";
         }
-        return formatDescription(description);
+        return extractPreparationSteps(description);
     }
 
-    private String formatDescription(String description) {
+    private List<String> extractPreparationSteps(String description) {
         Pattern pattern1 = Pattern.compile("\n([A-Ża-ż, ]+(\\([A-Ża-ż]+\\) ?)?(- VIDEO)? - Krok [1-9][0-9]?)");
         Matcher matcher1 = pattern1.matcher(description);
         if (matcher1.find()) {
@@ -136,15 +168,35 @@ public class TestDataCreator {
         Pattern pattern2 = Pattern.compile("(Krok [2-9][0-9]?)");
         Matcher matcher2 = pattern2.matcher(description);
         if (matcher2.find()) {
-            description = matcher2.replaceAll("\n$1");
+            description = matcher2.replaceAll("\n$1").trim();
         }
-        return description;
+
+        Pattern pattern3 = Pattern.compile("(\n*Krok [1-9][0-9]?\n+)");
+        Matcher matcher3 = pattern3.matcher(description);
+        List<String> preparationSteps = null;
+        if (matcher3.find()) {
+            preparationSteps = new ArrayList<>(Arrays.asList(pattern3.split(description)));
+            preparationSteps.removeFirst();
+        }
+        return preparationSteps;
+//        return null;
     }
 
     private void addRecipeSqlQuery(List<String> recipeQueryList, String title, int prepTime,
-                                   String description, String imageUrl, int categoryId, String mealType) {
-        recipeQueryList.add(String.format("INSERT INTO recipe (title, prep_time, description, image_url, category_id, meal_type) VALUES ('%s', %d, '%s', '%s', %d, '%s');",
-                title, prepTime, description, imageUrl, categoryId, mealType));
+                                   String imageUrl, int categoryId, String mealType) {
+        recipeQueryList.add(String.format("INSERT INTO recipe (title, prep_time, image_url, category_id, meal_type) VALUES ('%s', %d, '%s', %d, '%s');",
+                title, prepTime, imageUrl, categoryId, mealType));
+    }
+
+    private void addPreparationStepsSqlQuery(List<String> preparationStepsQueryList,
+                                             List<String> preparationSteps,
+                                             int recipeCounter) {
+        List<String> preparationStepsQueries = preparationSteps.stream()
+                .map(s -> String.format("INSERT INTO preparation_step (recipe_id, preparation_step) VALUES (%d, '%s');",
+                        recipeCounter, s))
+                .peek(System.out::println)
+                .collect(Collectors.toList());
+        preparationStepsQueryList.addAll(preparationStepsQueries);
     }
 
     private void saveQueryListToFile(List<String> recipeList, String outputFileName) throws IOException {
@@ -183,30 +235,26 @@ public class TestDataCreator {
         };
     }
 
-    private void createRecipesSqlFile() {
-        try (
-                var fileReader = new FileReader(recipesInputFile);
-                var reader = new BufferedReader(fileReader)) {
-            List<String> recipeQueryList = new ArrayList<>();
-            String nextLine = null;
-            while ((nextLine = reader.readLine()) != null) {
-                if (nextLine.isEmpty()) {
-                    continue;
-                } else {
-                    String title = nextLine;
-                    int recipeId = Integer.parseInt(reader.readLine());
-                    int prepTime = Integer.parseInt(reader.readLine());
-                    int categoryId = Integer.parseInt(reader.readLine());
-                    String mealType = readMealType(reader.readLine());
-                    String description = readRecipeDescription(reader);
-                    String imageUrl = String.format("%srecipe%d.jpg", RECIPE_RELATIVE_IMAGE_PATH, recipeId);
-                    addRecipeSqlQuery(recipeQueryList, title, prepTime, description, imageUrl, categoryId, mealType);
-                }
-            }
-            saveQueryListToFile(recipeQueryList, recipesOutputFile);
-            renameRecipeImageFiles();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void createPreparationStepsSqlFile() {
+//        try (
+//                var fileReader = new FileReader(recipesInputFile);
+//                var reader = new BufferedReader(fileReader)) {
+//            List<String> recipeQueryList = new ArrayList<>();
+//            String nextLine;
+//            while ((nextLine = reader.readLine()) != null) {
+//                if (!nextLine.isEmpty()) {
+//                    String title = nextLine;
+//                    int recipeId = Integer.parseInt(reader.readLine());
+//                    int prepTime = Integer.parseInt(reader.readLine());
+//                    int categoryId = Integer.parseInt(reader.readLine());
+//                    String mealType = readMealType(reader.readLine());
+//                    String imageUrl = String.format("%srecipe%d.jpg", RECIPE_RELATIVE_IMAGE_PATH, recipeId);
+//                    addRecipeSqlQuery(recipeQueryList, title, prepTime, imageUrl, categoryId, mealType);                }
+//            }
+//            saveQueryListToFile(recipeQueryList, recipesOutputFile);
+//            renameRecipeImageFiles();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

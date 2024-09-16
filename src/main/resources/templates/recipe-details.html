@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>szczegóły przepisu</title>
+    <title>Szczegóły przepisu</title>
 </head>
 <body>
 
@@ -95,9 +95,9 @@
                         <div class="description">
                             <h3>Sposób przygotowania potrawy</h3>
                             <ul>
-                                <li th:each="pair: ${recipeStepDescriptionPairs.pairs}">
-                                    <h4 th:text="${pair.stepName}"></h4>
-                                    <span th:text="${pair.stepDescription}"></span>
+                                <li th:each="step, iStat: ${recipe.preparationSteps}">
+                                    <h4 th:text="|Krok ${iStat.count}:|"></h4>
+                                    <span th:text="${step.preparationStep}"></span>
                                 </li>
                             </ul>
                         </div>

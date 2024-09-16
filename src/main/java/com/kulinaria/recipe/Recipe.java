@@ -1,5 +1,6 @@
 package com.kulinaria.recipe;
 
+import com.kulinaria.preparation.PreparationStep;
 import jakarta.persistence.*;
 import com.kulinaria.amount.Amount;
 import com.kulinaria.category.Category;
@@ -19,8 +20,6 @@ public class Recipe {
     private String title;
     @Column(nullable = false)
     private Integer prepTime = 0;
-    @Column(length = 3000, nullable = false)
-    private String description = "";
     private String imageUrl;
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -34,21 +33,27 @@ public class Recipe {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Ingredient> ingredients = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "recipe",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PreparationStep> preparationSteps = new ArrayList<>();
 
     public Recipe() {
     }
 
-    public Recipe(Long id, String title, Integer prepTime, String description, String imageUrl,
-                  Category category, MealType mealType, Vote vote, List<Ingredient> ingredients) {
+    public Recipe(Long id, String title, Integer prepTime, String imageUrl,
+                  Category category, MealType mealType, Vote vote, List<Ingredient> ingredients,
+                  List<PreparationStep> preparationSteps) {
         this.id = id;
         this.title = title;
         this.prepTime = prepTime;
-        this.description = description;
         this.imageUrl = imageUrl;
         this.category = category;
         this.mealType = mealType;
         this.vote = vote;
         this.ingredients = ingredients;
+        this.preparationSteps = preparationSteps;
     }
 
     public Long getId() {
@@ -73,14 +78,6 @@ public class Recipe {
 
     public void setPrepTime(Integer prepTime) {
         this.prepTime = prepTime;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getImageUrl() {
@@ -123,6 +120,14 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public List<PreparationStep> getPreparationSteps() {
+        return preparationSteps;
+    }
+
+    public void setPreparationSteps(List<PreparationStep> preparationSteps) {
+        this.preparationSteps = preparationSteps;
+    }
+
     public void deleteIngredient(int deleteIngredientIndex) {
         ingredients.remove(deleteIngredientIndex);
     }
@@ -138,5 +143,21 @@ public class Recipe {
         ingredient.setAmount(new Amount());
         ingredient.setRecipe(this);
         ingredients.add(ingredient);
+    }
+
+    public void addPreparationStep(PreparationStep preparationStep) {
+        preparationSteps.add(preparationStep);
+        preparationStep.setRecipe(this);
+    }
+
+    public void addEmptyPreparationStep() {
+        PreparationStep preparationStep = new PreparationStep();
+        preparationStep.setRecipe(this);
+        preparationSteps.add(preparationStep);
+    }
+
+    public void removePreparationStep(PreparationStep preparationStep) {
+        preparationSteps.remove(preparationStep);
+        preparationStep.setRecipe(null);
     }
 }

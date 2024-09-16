@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>strona główna</title>
+    <title>Strona główna</title>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-lg">
-                            <img th:src="${recipe.imageUrl}" th:alt="|recipe${recipe.id}|" class="top4-image">
+                            <img th:src="@{${recipe.imageUrl}}" th:alt="|recipe${recipe.id}|" class="top4-image">
                         </div>
                     </div>
                 </div>

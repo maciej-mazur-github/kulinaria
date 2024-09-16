@@ -12,7 +12,8 @@
 .header {
     width: 100%;
     /*background-image: url("/images/home_background.jpg");*/
-    background-image: url('home_background.jpg');
+    /*background-image: url('/images/home_background.jpg');*/
+    /*background-image: url('home_background.jpg');*/
     background-position: bottom center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */

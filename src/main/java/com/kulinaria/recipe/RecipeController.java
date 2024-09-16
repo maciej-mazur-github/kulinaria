@@ -36,8 +36,6 @@ public class RecipeController {
         if (recipeOptional.isPresent()) {
             Recipe recipeObject = recipeOptional.get();
             model.addAttribute("recipe", recipeObject);
-            model.addAttribute("recipeStepDescriptionPairs",
-                    recipeService.createStepDescriptionPairsList(recipeObject.getDescription()));
             return "recipe-details";
         } else {
             session.setAttribute("errorMessage", "Nie znaleziono przepisu dla końcówki linku \"" + recipe + "\"");
@@ -83,8 +81,6 @@ public class RecipeController {
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             model.addAttribute("recipe", recipe);
-            model.addAttribute("recipeStepDescriptionPairs",
-                    recipeService.createStepDescriptionPairsList(recipe.getDescription()));
             return "recipe-details-edition-mode";
         } else {
             redirectAttributes.addFlashAttribute("errorMessage",
@@ -132,20 +128,13 @@ public class RecipeController {
     @GetMapping("/kategorie/{categoryName}/przepis/{recipeUrlName}/edycja/sposob-przygotowania")
     String editRecipeSteps(Model model,
                            @PathVariable String recipeUrlName,
-                           RedirectAttributes redirectAttributes,
-                           @ModelAttribute("enlargedRecipeStepDescriptionPairs") RecipeStepDescriptionPairs
-                                   enlargedRecipeStepDescriptionPairs) {
+                           RedirectAttributes redirectAttributes) {
 
         long recipeId = extractRecipeIdFromRecipeUrl(recipeUrlName);
         Optional<Recipe> recipeOptional = recipeService.findById(recipeId);
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             model.addAttribute("recipe", recipe);
-            RecipeStepDescriptionPairs recipeStepDescriptionPairsToEdit =
-                    enlargedRecipeStepDescriptionPairs.getPairs().size() == 0 ?
-                            recipeService.createStepDescriptionPairsList(recipe.getDescription())
-                                : enlargedRecipeStepDescriptionPairs;
-            model.addAttribute("recipeStepDescriptionPairs", recipeStepDescriptionPairsToEdit);
             return "edit-steps";
         } else {
             redirectAttributes.addFlashAttribute("errorMessage",
@@ -191,20 +180,21 @@ public class RecipeController {
 
     @PostMapping("/zapisz-sposob-przygotowania")
     String updateRecipeStepsInDb(Recipe recipe,
-                                       Boolean addStep,
-                                       Integer deleteStepIndex,
-                                       RecipeStepDescriptionPairs recipeStepDescriptionPairs,
-                                       RedirectAttributes redirectAttributes) {
+                                 Boolean addStep,
+                                 Long deleteStepId,
+                                 RedirectAttributes redirectAttributes) {
 
-        Optional<Recipe> recipeFromDbOptional = recipeService
-                .updateRecipeSteps(recipe, deleteStepIndex, recipeStepDescriptionPairs);
+        Optional<Recipe> recipeFromDbOptional = recipeService.updatePreparationSteps(recipe, deleteStepId);
+
         if (recipeFromDbOptional.isPresent()) {
+            Recipe recipeFromDb = recipeFromDbOptional.get();
+
             if (addStep != null) {
-                recipeStepDescriptionPairs.addEmptyPair();
-                redirectAttributes.addFlashAttribute("enlargedRecipeStepDescriptionPairs", recipeStepDescriptionPairs);
+                recipeFromDb.addEmptyPreparationStep();
+                recipeService.saveInDb(recipeFromDb);
             }
-            if (addStep != null || deleteStepIndex != null) {
-                return LinkCreator.backToEditStepsLink(recipeFromDbOptional.get());  // redirect
+            if (addStep != null || deleteStepId != null) {
+                return LinkCreator.backToEditStepsLink(recipeFromDb);  // redirect
             } else {
                 return LinkCreator.createAfterEditSaveLink(recipeFromDbOptional.get());
             }

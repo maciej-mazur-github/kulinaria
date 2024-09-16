@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>edycja opisu</title>
+    <title>Edycja opisu</title>
 </head>
 <body>
 
@@ -27,28 +27,24 @@
               action="">
             <input type="hidden" th:field="*{id}">
 
-            <div th:object="${recipeStepDescriptionPairs}"
-                 class="container edit-steps-main-container">
+            <div class="container edit-steps-main-container">
                 <div class="container edit-steps-row"
-                     th:each="pair, itemStat: *{pairs}">
+                     th:each="step, iStat: *{preparationSteps}">
                     <div class="row ">
                         <div class="col">
-                            <input type="text"
-                                   th:field="*{pairs[__${itemStat.index}__].stepName}"
-                                   placeholder="Podaj nazwę/numer kroku..."
-                                   class="edit-steps-step-number">
+                            <h4 th:text="|Krok ${iStat.count}:|" style="display: inline"></h4>
                         </div>
                         <div class="col text-right">
                             <button class="btn btn-primary btn-sm step-delete-btn"
-                                    name="deleteStepIndex"
-                                    th:value="${itemStat.index}">
+                                    name="deleteStepId"
+                                    th:value="${step.id}">
                                 Usuń krok
                             </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg">
-                            <textarea th:field="*{pairs[__${itemStat.index}__].stepDescription}"
+                            <textarea th:field="*{preparationSteps[__${iStat.index}__].preparationStep}"
                                       cols="30" rows="10"
                                       placeholder="Podaj opis kroku..."
                                       class="edit-steps-textarea">

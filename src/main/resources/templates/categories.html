@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Przepisegro - kategorie</title>
+    <title>Kategorie</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css" th:href="@{style.css}"/>
@@ -10,22 +12,7 @@
 </head>
 <body>
 
-<div class="container-lg header">
-    <a th:href="@{/}"
-       href="/">
-        <div class="header-text">
-            <h2>Przepisegro</h2>
-            <p>Tutaj znajdziesz swój ulubiony przepis kulinarny!</p>
-        </div>
-    </a>
-    <div class="logo-buttons">
-        <a th:href="@{/przepis/dodaj}" href="" class="btn btn-primary">Dodaj nowy przepis</a>
-        <a th:href="@{/kategorie}" href="" class="btn btn-primary">Wyświetl kategorie potraw</a>
-    </div>
-</div>
-
-
-<div class="content" >
+<main layout:fragment="content">
     <ul class="category-block">
         <li th:each="category: ${categories}">
             <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
@@ -45,11 +32,11 @@
            th:href="@{${linkCreator}}"
            href=""
            class="all-categories-link">
-            <img th:src="@{/home_background.jpg}" src="/home_background.jpg" alt="kolacja">
+            <img th:src="@{/img/home_background.jpg}" src="/home_background.jpg" alt="kolacja">
             <h2>WSZYSTKIE PRZEPISY</h2>
         </a>
     </div>
 
-</div>
+</main>
 </body>
 </html>

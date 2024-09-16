@@ -1,5 +1,6 @@
 package com.kulinaria.recipe;
 
+import com.kulinaria.preparation.PreparationStepService;
 import jakarta.persistence.criteria.Join;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -19,11 +20,10 @@ import com.kulinaria.vote.Vote;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.kulinaria.recipe.RecipeFilters.*;
 
@@ -31,10 +31,12 @@ import static com.kulinaria.recipe.RecipeFilters.*;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final CategoryService categoryService;
+    private final PreparationStepService preparationStepService;
 
-    public RecipeService(RecipeRepository recipeRepository, CategoryService categoryService) {
+    public RecipeService(RecipeRepository recipeRepository, CategoryService categoryService, PreparationStepService preparationStepService) {
         this.recipeRepository = recipeRepository;
         this.categoryService = categoryService;
+        this.preparationStepService = preparationStepService;
     }
 
     public List<Recipe> findTop4() {
@@ -125,32 +127,6 @@ public class RecipeService {
          return recipeRepository.findById(recipeId);
     }
 
-    public RecipeStepDescriptionPairs createStepDescriptionPairsList(String description) {
-        Pattern pattern = Pattern.compile("(^Krok [1-9][0-9]?)|(.+)");
-        Matcher matcher = pattern.matcher(description);
-        List<String> steps = new ArrayList<>();
-        List<String> descriptions = new ArrayList<>();
-
-        int counter = 0;
-        while (matcher.find()) {
-            if (counter % 2 == 0) {
-                steps.add(matcher.group(0));
-            } else {
-                descriptions.add(matcher.group(0));
-            }
-            counter++;
-        }
-        return joinStepsDescriptionsLists(steps, descriptions);
-    }
-
-    private static RecipeStepDescriptionPairs joinStepsDescriptionsLists(List<String> steps, List<String> descriptions) {
-        List<RecipeStepDescriptionPair> pairs = new ArrayList<>();
-        for (int i = 0; i < steps.size(); i++) {
-            pairs.add(new RecipeStepDescriptionPair(steps.get(i), descriptions.get(i)));
-        }
-        return new RecipeStepDescriptionPairs(pairs);
-    }
-
     @Transactional
     public Recipe updateTitleCategoryType(Recipe recipe, CategoryEnum categoryEnum) {
         Recipe recipeFromDb = recipeRepository.findById(recipe.getId()).orElseThrow(IllegalArgumentException::new);
@@ -168,11 +144,12 @@ public class RecipeService {
     @Transactional
     public Recipe updateImage(Recipe recipe, MultipartFile newPhoto) throws IOException {
         String fileName = String.format("recipe%d.jpg", recipe.getId());
+        String randomSuffix = "?v." + Instant.now().getEpochSecond();
         String destFilePath = System.getProperty("user.dir") + "/images/recipes/" + fileName;
         newPhoto.transferTo(new File(destFilePath));
         Recipe recipeFromDb = recipeRepository.findById(recipe.getId()).orElseThrow(IllegalArgumentException::new);
         if (recipe.getImageUrl() == null) {
-            recipeFromDb.setImageUrl("/recipes/" + fileName);
+            recipeFromDb.setImageUrl("/recipes/" + fileName + randomSuffix);
         }
         return recipeFromDb;
     }
@@ -196,17 +173,32 @@ public class RecipeService {
         return recipeOptional;
     }
 
-    @Transactional
-    public Optional<Recipe> updateRecipeSteps(Recipe recipe,
-                                              Integer deleteStepIndex,
-                                              RecipeStepDescriptionPairs recipeStepDescriptionPairs) {
-        if (deleteStepIndex != null) {
-            recipeStepDescriptionPairs.deletePair(deleteStepIndex);
+    public Optional<Recipe> updatePreparationSteps(Recipe recipe,
+                                                   Long deleteStepId) {
+
+        Optional<Recipe> recipeOptional = overwritePreparationStepsInDb(recipe);
+
+        if (deleteStepId != null) {
+            preparationStepService.deleteStep(deleteStepId);
         }
+
+        return recipeOptional;
+    }
+
+    private Optional<Recipe> overwritePreparationStepsInDb(Recipe recipe) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipe.getId());
         if (recipeOptional.isPresent()) {
+            AtomicInteger counter = new AtomicInteger(0);
+
             Recipe recipeFromDb = recipeOptional.get();
-            recipeFromDb.setDescription(recipeStepDescriptionPairs.createResultString());
+            recipeFromDb.getPreparationSteps().stream()
+                    .forEach(step -> {
+                        String newStepValue = recipe.getPreparationSteps()
+                                .get(counter.getAndIncrement())
+                                .getPreparationStep();
+                        step.setPreparationStep(newStepValue);
+                    });
+            recipeRepository.save(recipeFromDb);
         }
         return recipeOptional;
     }
@@ -229,6 +221,10 @@ public class RecipeService {
         vote.setRecipe(recipe);
         recipe.setVote(vote);
         return recipeRepository.save(recipe);
+    }
+
+    public void saveInDb(Recipe recipeFromDb) {
+        recipeRepository.save(recipeFromDb);
     }
 }
 

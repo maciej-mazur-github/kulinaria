@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>tryb edycji</title>
+    <title>Tryb edycji</title>
     <script>
         function changeImage() {
             document.getElementById("image-change-form").submit();
@@ -103,9 +103,9 @@
                         <div class="description">
                             <h3>Sposób przygotowania potrawy</h3>
                             <ul>
-                                <li th:each="pair: ${recipeStepDescriptionPairs.pairs}">
-                                    <h4 th:text="${pair.stepName}"></h4>
-                                    <span th:text="${pair.stepDescription}"></span>
+                                <li th:each="step, iStat: ${recipe.preparationSteps}">
+                                    <h4 th:text="|Krok ${iStat.count}:|"></h4>
+                                    <span th:text="${step.preparationStep}"></span>
                                 </li>
                             </ul>
                         </div>

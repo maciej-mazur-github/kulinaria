@@ -4,17 +4,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    show-sql: true
     properties:
       hibernate:
         hbm2ddl:
-          import_files: db/category.sql, db/recipe.sql, db/amount.sql, db/ingredient.sql, db/meal-type.sql, db/vote.sql
+          import_files: db/category.sql, db/recipe.sql, db/amount.sql, db/ingredient.sql, db/meal-type.sql, db/vote.sql, db/preparation_step.sql
           import_files_sql_extractor: org.hibernate.tool.schema.internal.script.MultiLineSqlScriptExtractor
     open-in-view: false
-  web:
-    resources:
-      static-locations: classpath:/static,file:images/
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
+server:
+  servlet:
+    session:
+      tracking-modes: cookie

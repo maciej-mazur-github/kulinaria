@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    show-sql: true
+  web:
+    resources:
+      static-locations: classpath:/static,file:images/
+kulinaria:
+  pathPrefix: file:C:\Users\Maciek\Javastart\Portfolio\Kulinaria

@@ -1,9 +1,12 @@
 package com.kulinaria;
 
+import com.kulinaria.config.StaticResourcesPath;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties({StaticResourcesPath.class})
 public class KulinariaApplication {
 
     public static void main(String[] args) {

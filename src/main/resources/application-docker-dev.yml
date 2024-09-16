@@ -1,0 +1,6 @@
+spring:
+  web:
+    resources:
+      static-locations: classpath:/static,file:recipes/,file:categories/
+kulinaria:
+  pathPrefix: 'file:'
