@@ -80,25 +80,8 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<!--                <configuration>-->
-<!--                    <includes>-->
-<!--                        <include>images</include>-->
-<!--                    </includes>-->
-<!--                </configuration>-->
             </plugin>
         </plugins>
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--            </resource>-->
-<!--            <resource>-->
-<!--                <directory>images</directory>-->
-<!--                <targetPath>images</targetPath>-->
-<!--                <includes>-->
-<!--                    <include>**/*</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
     </build>
 
 </project>

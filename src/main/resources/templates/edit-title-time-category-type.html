@@ -28,7 +28,15 @@
             <div class="container text-center general-edition-all-fields edit-title-category-time-type-form">
                 <div class="row general-edition-content-row">
                     <div class="col-lg text-center ">
-                        <textarea th:field="*{title}" cols="50" rows="2" placeholder="Podaj tytuł przepisu..."></textarea>
+<!--                        <textarea th:field="*{title}" cols="50" rows="2" placeholder="Podaj tytuł przepisu..."></textarea>-->
+                        <input th:field="*{title}"
+                               type="text"
+                               size="60"
+                               placeholder="Podaj tytuł przepisu..."
+                               required
+                               maxlength="100"
+                               pattern="[A-Ża-ż ]+"
+                               title="Dozwolone znaki to litery duże, małe oraz spacje. Maksymalnie 100 znaków łącznie.">
                     </div>
                 </div>
                 <div class="row general-edition-content-row">
@@ -51,7 +59,7 @@
                         <div class="prep-time">
                             <i class="bi bi-clock"></i>
                             <div>
-                                <input type="number" th:field="*{prepTime}" class="prep-time-edit">
+                                <input type="number" th:field="*{prepTime}" class="prep-time-edit" min="0" max="400" step="1">
                                 <span>min.</span>
                             </div>
                         </div>

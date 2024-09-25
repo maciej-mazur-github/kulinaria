@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class TestDataCreator {
     private static final String DB_RELATIVE_PATH = "/src/main/resources/db/";
@@ -179,7 +178,6 @@ public class TestDataCreator {
             preparationSteps.removeFirst();
         }
         return preparationSteps;
-//        return null;
     }
 
     private void addRecipeSqlQuery(List<String> recipeQueryList, String title, int prepTime,
@@ -194,8 +192,7 @@ public class TestDataCreator {
         List<String> preparationStepsQueries = preparationSteps.stream()
                 .map(s -> String.format("INSERT INTO preparation_step (recipe_id, preparation_step) VALUES (%d, '%s');",
                         recipeCounter, s))
-                .peek(System.out::println)
-                .collect(Collectors.toList());
+                .toList();
         preparationStepsQueryList.addAll(preparationStepsQueries);
     }
 
@@ -234,27 +231,4 @@ public class TestDataCreator {
             default -> throw new IllegalArgumentException("Podano błędny typ posiłku");
         };
     }
-
-//    private void createPreparationStepsSqlFile() {
-//        try (
-//                var fileReader = new FileReader(recipesInputFile);
-//                var reader = new BufferedReader(fileReader)) {
-//            List<String> recipeQueryList = new ArrayList<>();
-//            String nextLine;
-//            while ((nextLine = reader.readLine()) != null) {
-//                if (!nextLine.isEmpty()) {
-//                    String title = nextLine;
-//                    int recipeId = Integer.parseInt(reader.readLine());
-//                    int prepTime = Integer.parseInt(reader.readLine());
-//                    int categoryId = Integer.parseInt(reader.readLine());
-//                    String mealType = readMealType(reader.readLine());
-//                    String imageUrl = String.format("%srecipe%d.jpg", RECIPE_RELATIVE_IMAGE_PATH, recipeId);
-//                    addRecipeSqlQuery(recipeQueryList, title, prepTime, imageUrl, categoryId, mealType);                }
-//            }
-//            saveQueryListToFile(recipeQueryList, recipesOutputFile);
-//            renameRecipeImageFiles();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

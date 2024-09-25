@@ -58,7 +58,7 @@ public class LinkCreator {
             currentQueryParams = currentUrl.substring(currentUrl.lastIndexOf("?"));
         }
 
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         String recipeTitleUrlTail = convertRecipeTitleToUrlTail(recipeTitle, recipeId);
         return urlBuilder.path("/przepis/" + recipeTitleUrlTail).toUriString();
     }
@@ -94,14 +94,14 @@ public class LinkCreator {
 
     public static String createEditLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         String resultLink = urlBuilder.path("/edycja").toUriString();
         return resultLink;
     }
 
     public static String createEditLinkInRecipesList(Recipe recipe) {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         String recipeUrlName = convertRecipeTitleToUrlTail(recipe.getTitle(), recipe.getId());
         String pathSuffix = String.format("/przepis/%s/edycja", recipeUrlName);
         String resultLink = urlBuilder.path(pathSuffix).toUriString();
@@ -110,37 +110,37 @@ public class LinkCreator {
 
     public static String createEditTitleTimeTypeLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.path("/tytul-czas-typ").toUriString();
     }
 
     public static String createEditIngredientsLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.path("/skladniki").toUriString();
     }
 
     public static String createEditRecipeStepsLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.path("/sposob-przygotowania").toUriString();
     }
 
     public static String backFromEditTitleTimeTypeLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.toUriString().replaceAll("/tytul-czas-typ", "");
     }
 
     public static String backFromEditIngredientsLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.toUriString().replaceAll("/skladniki", "");
     }
 
     public static String backFromEditStepsLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.toUriString().replaceAll("/sposob-przygotowania", "");
     }
 
@@ -154,14 +154,14 @@ public class LinkCreator {
 
     public static String createDeleteLink(String recipeTitle, long recipeId) {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         String recipeTitleUrlTail = convertRecipeTitleToUrlTail(recipeTitle, recipeId);
         return urlBuilder.path("/przepis/" + recipeTitleUrlTail + "/edycja/usun").toUriString();
     }
 
     public static String createDeleteInRecipeDetailsLink(String recipeTitle, long recipeId) {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.path("/edycja/usun").toUriString();
     }
 
@@ -181,32 +181,32 @@ public class LinkCreator {
 
     public static String createDeleteLinkInEditionMode() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         String link = urlBuilder.path("/usun").toUriString();
         return link;
     }
 
     public static String backFromDeletionConfirmationLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.toUriString().replaceAll("/usun", "");
     }
 
     public static String backToNormalRecipeDetailsViewLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.toUriString().replaceAll("/edycja", "");
     }
 
     public static String backToNormalRecipeDetailsViewInDeletionConfirmationLink() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         return urlBuilder.toUriString().replaceAll("/edycja/usun", "");
     }
 
     public static String backToRecipesListWithFiltersAndSorting() {
         ServletUriComponentsBuilder urlBuilder = ServletUriComponentsBuilder.fromCurrentRequest();
-        urlBuilder.replaceQuery(null);  // czyszczenie URI z wszystkich parametrów
+        urlBuilder.replaceQuery(null);
         String resultLink = urlBuilder.toUriString();
         resultLink = resultLink.substring(0, resultLink.indexOf("/przepis")).concat(currentQueryParams);
         return resultLink;

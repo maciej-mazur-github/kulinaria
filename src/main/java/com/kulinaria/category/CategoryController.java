@@ -41,7 +41,7 @@ public class CategoryController {
                     recipeService.findAllForFiltersAndSort(recipeFilters, pageable.previousOrFirst()));
         } else {
             redirectAttributes.addFlashAttribute(
-                    "errorMessage", "Wystąpił błąd związany z filtrami wyszukiwania");
+                    "flashAttribute", "Wystąpił błąd związany z filtrami wyszukiwania");
             return "redirect:/blad";
         }
         addCategoryAttribute(recipeFilters, model);

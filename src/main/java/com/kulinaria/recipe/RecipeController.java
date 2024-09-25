@@ -30,7 +30,7 @@ public class RecipeController {
     @GetMapping("/kategorie/{category}/przepis/{recipe}")
     String getRecipe(@PathVariable String recipe,
                      Model model,
-                     HttpSession session) {
+                     RedirectAttributes redirectAttributes) {
         long recipeId = extractRecipeIdFromRecipeUrl(recipe);
         Optional<Recipe> recipeOptional = recipeService.findById(recipeId);
         if (recipeOptional.isPresent()) {
@@ -38,9 +38,16 @@ public class RecipeController {
             model.addAttribute("recipe", recipeObject);
             return "recipe-details";
         } else {
-            session.setAttribute("errorMessage", "Nie znaleziono przepisu dla końcówki linku \"" + recipe + "\"");
+            redirectAttributes.addFlashAttribute("flashAttribute", "Nie znaleziono przepisu dla końcówki linku \"" + recipe + "\"");
             return "redirect:/blad";
         }
+    }
+
+    @GetMapping("/blad")
+    String showError(Model model,
+                     @ModelAttribute("flashAttribute") Object flashAttribute) {
+        model.addAttribute("errorMessage", flashAttribute);
+        return "error-message";
     }
 
     @GetMapping("/przepis/dodaj")
@@ -83,9 +90,9 @@ public class RecipeController {
             model.addAttribute("recipe", recipe);
             return "recipe-details-edition-mode";
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Nie odnaleziono przepisu o tytule \"" + recipeUrlName + "\"");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -102,9 +109,9 @@ public class RecipeController {
             model.addAttribute("categories", categories);
             return "edit-title-time-category-type";
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Nie odnaleziono przepisu o tytule \"" + recipeUrlName + "\"");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -119,9 +126,9 @@ public class RecipeController {
             model.addAttribute("recipe", recipe);
             return "edit-ingredients";
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Nie odnaleziono przepisu o tytule \"" + recipeUrlName + "\"");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -137,9 +144,9 @@ public class RecipeController {
             model.addAttribute("recipe", recipe);
             return "edit-steps";
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Nie odnaleziono przepisu o tytule \"" + recipeUrlName + "\"");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -155,9 +162,9 @@ public class RecipeController {
             model.addAttribute("recipe", recipe);
             return "delete-confirmation";
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Nie odnaleziono przepisu o tytule \"" + recipeUrlName + "\"");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -172,9 +179,9 @@ public class RecipeController {
             model.addAttribute("category", category);
             return "recipe-deletion-success";
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Wystąpił błąd podczas usuwania przepisu o tytule \"" + recipeTitle + "\"");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -199,9 +206,9 @@ public class RecipeController {
                 return LinkCreator.createAfterEditSaveLink(recipeFromDbOptional.get());
             }
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Wystąpił błąd przy zapisie zmian sposobu przygotowania przepisu");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
@@ -218,9 +225,9 @@ public class RecipeController {
                 return LinkCreator.createAfterEditSaveLink(recipeFromDbOptional.get());
             }
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage",
+            redirectAttributes.addFlashAttribute("flashAttribute",
                     "Wystąpił błąd przy zapisie zmian składników przepisu");
-            return "error";
+            return "redirect:/blad";
         }
     }
 
