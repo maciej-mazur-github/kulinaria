@@ -6,8 +6,7 @@
 
 [![Static Badge](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/maciej-mazur-github/kulinaria)
 [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://kulinaria.codingproductions.com/)
-
-![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
+![Build Status](https://img.shields.io/badge/build_status-IN_PROGRESS-76B900)
 
 </h1> 
 
@@ -45,7 +44,7 @@
 
 <h2 align="center">
 
-![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
+![Build Status](https://img.shields.io/badge/build_status-IN_PROGRESS-76B900)
 </h2>
 
 <h2 align="center">
