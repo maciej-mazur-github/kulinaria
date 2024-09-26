@@ -19,7 +19,7 @@
 [![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)](https://hibernate.org/)
 [![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://dev.mysql.com/doc/refman/8.4/en/language-structure.html)
 [![H2_Database](https://img.shields.io/badge/H2_Database-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.h2database.com/html/main.html)
-[![Thymeleaf][thymeleaf-link]](https://www.thymeleaf.org/)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
 [![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
@@ -53,24 +53,6 @@
   </a> 
   <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
 </h2>
-
-<!-- <h2 align="center">
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank">
-      <h1>View Live Demo</h1>
-    </a>
-</h2> -->
-
-<!-- <h1>
-<a href="https://www.kulinaria.codingproductions.com" target="_blank">
-      View Live Demo
-</a>
-</h1>
-
-![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
-
-<h2> 
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
-</h2> -->
 
 
 </div>
@@ -152,7 +134,7 @@ At this point project's UI is held in Polish language as a part of simulating ch
 |[![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)](https://hibernate.org/)|For automatic table creation and test data upload|
 | [![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://dev.mysql.com/doc/refman/8.4/en/language-structure.html) | Used along with Hibernate to load test data to tables |
 |[![H2_Database](https://img.shields.io/badge/H2_Database-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.h2database.com/html/main.html) | Used as a convenient replacement for external database like MySQL. At this point H2 Database fully meets project's requirements |
-|[![Thymeleaf][thymeleaf-link]](https://www.thymeleaf.org/)| Used as part of Spring MVC to build dynamic server web pages|
+|[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)](https://www.thymeleaf.org/)| Used as part of Spring MVC to build dynamic server web pages|
 |[![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) | Pretty extensive use of HTML 5 and CSS 3 capabilities |
 |[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) |Version 4.3.1, used especially for styling and resizing recipe ingredients and preparation steps tables|
 |[![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/) | Github used as a remote repository both for my local OS (Windows) repository and for VPS OS (Debian) repository |
@@ -288,6 +270,3 @@ Currently the application front end is projected nicely on tablets and all other
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[thymeleaf-link]: https://img.shields.io/badge/Thymeleaf-005f0f?style=for-the-badge&logoColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxLjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICB3aWR0aD0iMTAyMS4wMDAwMDBwdCIgaGVpZ2h0PSIxMDIzLjAwMDAwMHB0IiB2aWV3Qm94PSIwIDAgMTAyMS4wMDAwMDAgMTAyMy4wMDAwMDAiCiAgICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAyMSIgaGVpZ2h0PSIxMDIzIiByeD0iODAiIGZpbGw9IndoaXRlIi8+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwxMDIzLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICAgIGZpbGw9IiMwMDVGMEYiIHN0cm9rZT0ibm9uZSI+CiAgICAgICAgPHBhdGggZD0iTTU5NSAxMDIxNSBjLTE0NCAtMjYgLTI3MiAtOTQgLTM3OSAtMjAxIC03NiAtNzYgLTEyMyAtMTQ3IC0xNjMKIC0yNDYgLTU2IC0xMzkgLTUzIDE1MCAtNTEgLTQ2OTMgMyAtNDIzMyA0IC00NDczIDIxIC00NTMwIDc2IC0yNjAgMjcwIC00NTIKNTI3IC01MjIgNjIgLTE3IDI4NCAtMTggNDU1NSAtMTggNDI1MCAwIDQ0OTMgMSA0NTU1IDE4IDI1OCA2OSA0NTYgMjY3IDUyNwo1MjcgMTcgNjIgMTggMjg1IDE4IDQ1NjUgMCA0MjgwIC0xIDQ1MDMgLTE4IDQ1NjUgLTcwIDI1NyAtMjYyIDQ1MSAtNTIyIDUyNwogLTU3IDE3IC0yOTUgMTggLTQ1MzAgMjAgLTM1OTEgMSAtNDQ4NCAtMSAtNDU0MCAtMTJ6IG03OTgzIC0xNjMyIGMtMTU5IC0zMjcKIC0yNzcgLTU4MCAtNjMxIC0xMzQ4IC01MDcgLTEwOTkgLTcyNyAtMTU0NiAtMTAzMCAtMjA5MCAtMjcxIC00ODYgLTYwNSAtMTAwMwogLTkxNyAtMTQyMCAtNTA2IC02NzUgLTEwMTAgLTEwODMgLTE1ODQgLTEyODIgLTQwMyAtMTM5IC04NTkgLTExNSAtMTI0MSA2NwogLTE3MyA4MyAtMzkwIDI1MCAtNDYwIDM1NiAtMTI2IDE4OSAtMTI2IDQ3MCAtMiA3MTkgMzYgNzMgOTYgMTQ3IDIzMCAyODQgMjMwCjIzNCA0MTcgMzg1IDg1MiA2ODYgODk3IDYyMiAxMDQ3IDcyOCAxNDIzIDEwMDkgODk3IDY3MCAxNjE4IDEyOTAgMjMzMiAyMDA1CjQwOCA0MDkgNzQwIDc3MSAxMDQyIDExMzYgNTcgNjkgMTA0IDEyNSAxMDUgMTI1IDEgMCAtNTMgLTExMSAtMTE5IC0yNDd6Cm0tNzQ5IC00NDUgYy0zMDkgLTMzMiAtODI0IC04MzQgLTEyMjkgLTExOTggLTUzOCAtNDg0IC0xMjUyIC0xMDUyIC0xOTAwCiAtMTUxMCAtOTYgLTY4IC0yNTggLTE4MyAtMzYwIC0yNTUgLTEwMiAtNzIgLTI4OCAtMjAzIC00MTUgLTI5MCAtNDg5IC0zMzYKIC03MDIgLTQ5NiAtOTE5IC02ODYgLTE2MCAtMTQwIC0zNjYgLTM1NCAtNDE1IC00MjkgLTc3IC0xMTggLTEzMiAtMjg0IC0xNDYKIC00MzQgbC04IC04MCAtMzMgNjUgYy04MSAxNTcgLTE1MyAzODQgLTE4NiA1ODQgLTcgNDcgLTEzIDE2NCAtMTIgMjgwIDAgMTY3CjMgMjE5IDIyIDMxMyA2MyAzMTYgMjE5IDU5NCA0NDUgNzk1IDI2MCAyMzEgNTgzIDQwNiAxMTIyIDYwNyAxMzE1IDQ5MCAyMzc4CjEwNjMgMzUyNSAxODk4IDIwNiAxNTAgNTk3IDQ0OSA2MDYgNDYzIDMgNSAxMCA5IDE2IDkgNiAwIC00NSAtNjAgLTExMyAtMTMyeiIvPgogICAgPC9nPgo8L3N2Zz4K
