@@ -41,8 +41,10 @@
 </h3>
 <br><br>
 
-![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
+
 <h2 align="center">
+
+![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
     <a href="https://www.kulinaria.codingproductions.com" target="_blank">
       <h1>View Live Demo</h1>
     </a> 
