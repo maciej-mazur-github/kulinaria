@@ -6,19 +6,23 @@
 
 [![Static Badge](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/maciej-mazur-github/kulinaria)
 [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://kulinaria.codingproductions.com/)
+![Build Status](https://img.shields.io/badge/build_status-IN_PROGRESS-76B900)
 
 </h1> 
+
+
+<img referrerpolicy="no-referrer-when-downgrade" src="https://p.malpka.eu/matomo.php?idsite=11&amp;rec=1" style="border:0" alt="" />
 
 <h3 align="center">Technologies used:</h3>
 
 <h1 align="center">
 
-[![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Spring](https://img.shields.io/badge/Spring_boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/pl/java/technologies/downloads/#java21)
 [![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)](https://hibernate.org/)
 [![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://dev.mysql.com/doc/refman/8.4/en/language-structure.html)
 [![H2_Database](https://img.shields.io/badge/H2_Database-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.h2database.com/html/main.html)
-[![Thymeleaf][thymeleaf-link]](https://www.thymeleaf.org/)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
 [![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
@@ -35,17 +39,22 @@
 </p>
 
 <h3 align="center">
-  Hibernate and H2 database oriented Cookbook project
+  Hibernate and H2 database oriented Cookbook training project
 </h3>
+<br><br>
+
+
 
 <h2 align="center">
-  <!-- <a href="https://www.kulinaria.codingproductions.com">
+
+![Build Status](https://img.shields.io/badge/build_status-IN_PROGRESS-76B900)
+</h2>
+
+<h2 align="center">
+  <a href="https://www.kulinaria.codingproductions.com" target="_blank">
     <h1>View Live Demo</h1>
-    <img alt="arrow_gif" src="https://i.pinimg.com/originals/ea/f4/5d/eaf45d79005980c820d3412d346d51dc.gif" height="100">
-  </a> -->
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank"><h1>View Live Demo</h1></a> 
-    <br> 
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
+  </a> 
+  <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
 </h2>
 
 
@@ -103,7 +112,8 @@ At this point project's UI is held in Polish language as a part of simulating ch
 
 <br><br>
 
-<a id="action-list"></a>In this application you can:
+<a id="action-list"></a>
+### In this application you can:
 
 - view the list of either all or categorized (dinners, salads, pasta, sandwiches) cooking recipes
 - view the details of the chosen recipe (time of preparation, category, type, vote count, ingredients, preparation steps, photo)
@@ -122,13 +132,14 @@ At this point project's UI is held in Polish language as a part of simulating ch
 ### Built With
 
 | Technology / Language     | Description |
-| ----------- | ----------- |
-|[![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot) | Spring boot 3.3.3, Spring Data JPA, Spring MVC|
+| -----------: | ----------- |
+|[![Spring](https://img.shields.io/badge/Spring_boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot) | Spring boot 3.3.3, Spring Data JPA, Spring MVC|
 |[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/pl/java/technologies/downloads/#java21)|Oracle JDK 21.0.3|
+|[![RegEx](https://img.shields.io/badge/Regex-ED8B00?style=for-the-badge&logoColor=white)](https://www.regular-expressions.info/tutorial.html)| Especially for filtering and converting plain text data to SQL scripts |
 |[![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)](https://hibernate.org/)|For automatic table creation and test data upload|
 | [![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://dev.mysql.com/doc/refman/8.4/en/language-structure.html) | Used along with Hibernate to load test data to tables |
 |[![H2_Database](https://img.shields.io/badge/H2_Database-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.h2database.com/html/main.html) | Used as a convenient replacement for external database like MySQL. At this point H2 Database fully meets project's requirements |
-|[![Thymeleaf][thymeleaf-link]](https://www.thymeleaf.org/)| Used as part of Spring MVC to build dynamic server web pages|
+|[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)](https://www.thymeleaf.org/)| Used as part of Spring MVC to build dynamic server web pages|
 |[![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) | Pretty extensive use of HTML 5 and CSS 3 capabilities |
 |[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) |Version 4.3.1, used especially for styling and resizing recipe ingredients and preparation steps tables|
 |[![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/) | Github used as a remote repository both for my local OS (Windows) repository and for VPS OS (Debian) repository |
@@ -180,6 +191,36 @@ As a typical database web project there is lots of different links needed here t
   <img alt="link_creator_fragment" title="Link creator fragment" src="images/github_readme/link_creator_fragment.png" width="600">
 </p>
 
+Also note that when a particular recipe details are viewed, its link showing up in the web browser contains the recipe title with its words stripped from Polish language accents, separated with hyphens and ended with recipe database index. Putting just the recipe ID in the link would be easier to implement. I decided to choose the first option because I wished that whenever the user would like to share that link with anyone else, it would be nice for the receiver to be able to recognize what the actual recipe is just by looking at the link and without the need to click on it.
+
+
+<p align="center">
+  <img alt="links_with_recipe_title.png" title="Recipe details with link containing recipe title screenshot" src="images/github_readme/links_with_recipe_title.png" width="900">
+</p>
+
+
+To achieve that I used com.kulinaria.utils.LinkCreator. I first call it from Thymeleaf generated list of recipes. Below is just a fragment:
+
+<p align="center">
+  <img alt="Thymeleaf_link_creator_call.png" title="Thymeleaf call for createRecipeLink() method" src="images/github_readme/Thymeleaf_link_creator_call.png" width="600">
+</p>
+
+Then I create a new link based on the current HTTP request form, recipe title and recipe ID:
+
+<p align="center">
+  <img alt="recipe_title_to_link_transformation.png" title="Recipe title to link transformation" src="images/github_readme/recipe_title_to_link_transformation.png" width="600">
+</p>
+
+Whenever this link is clicked the controller method calls extractRecipeIdFromRecipeUrl() method to further be able to obtain recipe details from the database by recipe's ID:
+
+<p align="center">
+  <img alt="recipe_details_controller_method.png" title="Recipe details controller method call for extractRecipeIdFromRecipeUrl() " src="images/github_readme/recipe_details_controller_method.png" width="800">
+</p>
+
+<p align="center">
+  <img alt="recipe_id_extraction.png" title="Extracting recipe ID from URL trailer" src="images/github_readme/recipe_id_extraction.png" width="400">
+</p>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Pagination
@@ -199,6 +240,8 @@ Also I found an effective way to make use of Thymeleaf and Bootstrap to properly
 <p align="center">
     <img alt="pagination_graphic" title="Pagination graphic" src="images/github_readme/pagination_graphic.png" width="400">
 </p>
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -232,7 +275,7 @@ This allows the application to operate on the photo files in the conainer outsid
 
 ### Implementing Spring Security
 
-At this point the application is lacking verification and authorization mechanisms. Therefore no user is asked for access credentials and anyone is capable of performing all the [actions mentioned earlier](#action-list). This is where Spring Security will come in handy which I will implement in the near future, just as I have already successfully done in another one of my projects (https://github.com/maciej-mazur-github/ofertownia.git). Users will be authorized to browse recipe lists and details. Administrators will be allowed to promote plain users to the role of administrators, add, edit or remove recipes from the database. Probably there will also be a role of super administrator who will have the power to degrade administrators back to the role of plain user and to remove administrators and users from the database.
+At this point the application is lacking verification and authorization mechanisms. Therefore no user is asked for access credentials and anyone is capable of performing all the [actions mentioned earlier](#action-list). This is where Spring Security will come in handy which I will implement in the near future, just as I have already successfully done in another one of my projects (https://github.com/maciej-mazur-github/ofertownia.git). Users will be authorized to browse recipe lists and details. Administrators will be allowed to promote plain users to the role of administrators, add, edit or remove recipes from the database. Probably there will also be a role of super administrator who will have the power to degrade administrators back to the role of a plain user and to remove administrators and users from the database.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -264,6 +307,3 @@ Currently the application front end is projected nicely on tablets and all other
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[thymeleaf-link]: https://img.shields.io/badge/Thymeleaf-005f0f?style=for-the-badge&logoColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxLjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICB3aWR0aD0iMTAyMS4wMDAwMDBwdCIgaGVpZ2h0PSIxMDIzLjAwMDAwMHB0IiB2aWV3Qm94PSIwIDAgMTAyMS4wMDAwMDAgMTAyMy4wMDAwMDAiCiAgICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAyMSIgaGVpZ2h0PSIxMDIzIiByeD0iODAiIGZpbGw9IndoaXRlIi8+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwxMDIzLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICAgIGZpbGw9IiMwMDVGMEYiIHN0cm9rZT0ibm9uZSI+CiAgICAgICAgPHBhdGggZD0iTTU5NSAxMDIxNSBjLTE0NCAtMjYgLTI3MiAtOTQgLTM3OSAtMjAxIC03NiAtNzYgLTEyMyAtMTQ3IC0xNjMKIC0yNDYgLTU2IC0xMzkgLTUzIDE1MCAtNTEgLTQ2OTMgMyAtNDIzMyA0IC00NDczIDIxIC00NTMwIDc2IC0yNjAgMjcwIC00NTIKNTI3IC01MjIgNjIgLTE3IDI4NCAtMTggNDU1NSAtMTggNDI1MCAwIDQ0OTMgMSA0NTU1IDE4IDI1OCA2OSA0NTYgMjY3IDUyNwo1MjcgMTcgNjIgMTggMjg1IDE4IDQ1NjUgMCA0MjgwIC0xIDQ1MDMgLTE4IDQ1NjUgLTcwIDI1NyAtMjYyIDQ1MSAtNTIyIDUyNwogLTU3IDE3IC0yOTUgMTggLTQ1MzAgMjAgLTM1OTEgMSAtNDQ4NCAtMSAtNDU0MCAtMTJ6IG03OTgzIC0xNjMyIGMtMTU5IC0zMjcKIC0yNzcgLTU4MCAtNjMxIC0xMzQ4IC01MDcgLTEwOTkgLTcyNyAtMTU0NiAtMTAzMCAtMjA5MCAtMjcxIC00ODYgLTYwNSAtMTAwMwogLTkxNyAtMTQyMCAtNTA2IC02NzUgLTEwMTAgLTEwODMgLTE1ODQgLTEyODIgLTQwMyAtMTM5IC04NTkgLTExNSAtMTI0MSA2NwogLTE3MyA4MyAtMzkwIDI1MCAtNDYwIDM1NiAtMTI2IDE4OSAtMTI2IDQ3MCAtMiA3MTkgMzYgNzMgOTYgMTQ3IDIzMCAyODQgMjMwCjIzNCA0MTcgMzg1IDg1MiA2ODYgODk3IDYyMiAxMDQ3IDcyOCAxNDIzIDEwMDkgODk3IDY3MCAxNjE4IDEyOTAgMjMzMiAyMDA1CjQwOCA0MDkgNzQwIDc3MSAxMDQyIDExMzYgNTcgNjkgMTA0IDEyNSAxMDUgMTI1IDEgMCAtNTMgLTExMSAtMTE5IC0yNDd6Cm0tNzQ5IC00NDUgYy0zMDkgLTMzMiAtODI0IC04MzQgLTEyMjkgLTExOTggLTUzOCAtNDg0IC0xMjUyIC0xMDUyIC0xOTAwCiAtMTUxMCAtOTYgLTY4IC0yNTggLTE4MyAtMzYwIC0yNTUgLTEwMiAtNzIgLTI4OCAtMjAzIC00MTUgLTI5MCAtNDg5IC0zMzYKIC03MDIgLTQ5NiAtOTE5IC02ODYgLTE2MCAtMTQwIC0zNjYgLTM1NCAtNDE1IC00MjkgLTc3IC0xMTggLTEzMiAtMjg0IC0xNDYKIC00MzQgbC04IC04MCAtMzMgNjUgYy04MSAxNTcgLTE1MyAzODQgLTE4NiA1ODQgLTcgNDcgLTEzIDE2NCAtMTIgMjgwIDAgMTY3CjMgMjE5IDIyIDMxMyA2MyAzMTYgMjE5IDU5NCA0NDUgNzk1IDI2MCAyMzEgNTgzIDQwNiAxMTIyIDYwNyAxMzE1IDQ5MCAyMzc4CjEwNjMgMzUyNSAxODk4IDIwNiAxNTAgNTk3IDQ0OSA2MDYgNDYzIDMgNSAxMCA5IDE2IDkgNiAwIC00NSAtNjAgLTExMyAtMTMyeiIvPgogICAgPC9nPgo8L3N2Zz4K
