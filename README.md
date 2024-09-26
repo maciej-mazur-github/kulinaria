@@ -7,6 +7,8 @@
 [![Static Badge](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/maciej-mazur-github/kulinaria)
 [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://kulinaria.codingproductions.com/)
 
+![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
+
 </h1> 
 
 <h3 align="center">Technologies used:</h3>
@@ -35,18 +37,35 @@
 </p>
 
 <h3 align="center">
-  Hibernate and H2 database oriented Cookbook project
+  Hibernate and H2 database oriented Cookbook training project
 </h3>
+<br><br>
 
+![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
 <h2 align="center">
-  <!-- <a href="https://www.kulinaria.codingproductions.com">
-    <h1>View Live Demo</h1>
-    <img alt="arrow_gif" src="https://i.pinimg.com/originals/ea/f4/5d/eaf45d79005980c820d3412d346d51dc.gif" height="100">
-  </a> -->
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank"><h1>View Live Demo</h1></a> 
-    <br> 
+    <a href="https://www.kulinaria.codingproductions.com" target="_blank">
+      <h1>View Live Demo</h1>
+    </a> 
     <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
 </h2>
+
+<!-- <h2 align="center">
+    <a href="https://www.kulinaria.codingproductions.com" target="_blank">
+      <h1>View Live Demo</h1>
+    </a>
+</h2> -->
+
+<!-- <h1>
+<a href="https://www.kulinaria.codingproductions.com" target="_blank">
+      View Live Demo
+</a>
+</h1>
+
+![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
+
+<h2> 
+    <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
+</h2> -->
 
 
 </div>
@@ -232,7 +251,7 @@ This allows the application to operate on the photo files in the conainer outsid
 
 ### Implementing Spring Security
 
-At this point the application is lacking verification and authorization mechanisms. Therefore no user is asked for access credentials and anyone is capable of performing all the [actions mentioned earlier](#action-list). This is where Spring Security will come in handy which I will implement in the near future, just as I have already successfully done in another one of my projects (https://github.com/maciej-mazur-github/ofertownia.git). Users will be authorized to browse recipe lists and details. Administrators will be allowed to promote plain users to the role of administrators, add, edit or remove recipes from the database. Probably there will also be a role of super administrator who will have the power to degrade administrators back to the role of plain user and to remove administrators and users from the database.
+At this point the application is lacking verification and authorization mechanisms. Therefore no user is asked for access credentials and anyone is capable of performing all the [actions mentioned earlier](#action-list). This is where Spring Security will come in handy which I will implement in the near future, just as I have already successfully done in another one of my projects (https://github.com/maciej-mazur-github/ofertownia.git). Users will be authorized to browse recipe lists and details. Administrators will be allowed to promote plain users to the role of administrators, add, edit or remove recipes from the database. Probably there will also be a role of super administrator who will have the power to degrade administrators back to the role of a plain user and to remove administrators and users from the database.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
