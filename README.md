@@ -45,10 +45,10 @@
 <h2 align="center">
 
 ![Build Status](https://img.shields.io/badge/Build_status-IN_PROGRESS-76B900)
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank">
-      <h1>View Live Demo</h1>
-    </a> 
-    <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
+  <a href="https://www.kulinaria.codingproductions.com" target="_blank">
+    <h1>View Live Demo</h1>
+  </a> 
+  <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
 </h2>
 
 <!-- <h2 align="center">
