@@ -109,7 +109,8 @@ At this point project's UI is held in Polish language as a part of simulating ch
 
 <br><br>
 
-<a id="action-list"></a>In this application you can:
+<a id="action-list"></a>
+### In this application you can:
 
 - view the list of either all or categorized (dinners, salads, pasta, sandwiches) cooking recipes
 - view the details of the chosen recipe (time of preparation, category, type, vote count, ingredients, preparation steps, photo)
