@@ -254,6 +254,10 @@
     text-align: center;
 }
 
+.login-form {
+    max-width: 1000px;
+}
+
 .recipe-list-vote-column {
     display: flex;
     justify-content: center;

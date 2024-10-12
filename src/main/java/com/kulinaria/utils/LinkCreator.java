@@ -66,9 +66,10 @@ public class LinkCreator {
     public static String convertRecipeTitleToUrlTail(String recipeTitle, long recipeId) {
         String[] split = StringUtils.stripAccents(recipeTitle)
                 .replaceAll(",", "")
+                .replaceAll("[()]", "")
                 .toLowerCase()
                 .split(" ");
-        return String.join("-", split).concat("-" + String.valueOf(recipeId));
+        return String.join("-", split).concat("-" + recipeId);
     }
 
     private static void adjustSortOrder(ServletUriComponentsBuilder urlBuilder, String targetSortBy) {

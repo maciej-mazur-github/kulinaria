@@ -7,7 +7,7 @@ spring:
     properties:
       hibernate:
         hbm2ddl:
-          import_files: db/category.sql, db/recipe.sql, db/amount.sql, db/ingredient.sql, db/meal-type.sql, db/vote.sql, db/preparation_step.sql
+          import_files: db/category.sql, db/recipe.sql, db/amount.sql, db/ingredient.sql, db/meal-type.sql, db/vote.sql, db/preparation_step.sql, db/user/user.sql, db/user/user_role.sql, db/user/user_roles.sql
           import_files_sql_extractor: org.hibernate.tool.schema.internal.script.MultiLineSqlScriptExtractor
     open-in-view: false
   servlet:

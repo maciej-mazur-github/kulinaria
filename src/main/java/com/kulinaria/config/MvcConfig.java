@@ -20,7 +20,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/recipes/**")
                 .addResourceLocations(pathPrefix + "/images/recipes/");
-        System.out.println(pathPrefix + "/images/recipes/");
         registry
                 .addResourceHandler("/categories/**")
                 .addResourceLocations(pathPrefix + "/images/categories/");

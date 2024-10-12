@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Zaloguj</title>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <div class="container container-main login-form mt-4">
+        <h1 class="text-white bg-danger bg-gradient p-4 rounded mb-3 text-center" th:if="${error}">
+            Błędne dane logowania
+        </h1>
+        <h1 class="text-white bg-info bg-gradient p-4 rounded mb-4 text-center" th:if="${logout}">
+            Zostałeś wylogowany<br>Możesz zalogować się ponownie.
+        </h1>
+
+        <h2>Zaloguj się</h2>
+        <form th:action="@{/zaloguj}" method="post">
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email / nazwa użytkownika</label>
+                <input type="email"
+                       class="form-control"
+                       id="emailInput"
+                       placeholder="imie@mail.com"
+                       name="username">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput2" class="form-label">Hasło</label>
+                <input type="password" class="form-control" id="exampleFormControlInput2" name="password">
+            </div>
+            <button class="btn btn-primary mb-3" type="submit">Zaloguj</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>

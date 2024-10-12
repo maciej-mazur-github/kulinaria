@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
 <header th:fragment="header">
@@ -14,6 +15,10 @@
         <div class="logo-buttons">
             <a th:href="@{/przepis/dodaj}" href="" class="btn btn-primary">Dodaj nowy przepis</a>
             <a th:href="@{/kategorie}" href="" class="btn btn-primary">Wyświetl kategorie potraw</a>
+        </div>
+        <div class="logo-buttons">
+            <a th:href="@{/zaloguj}" sec:authorize="!isAuthenticated()" class="btn btn-primary">Zaloguj</a>
+            <a th:href="@{/wyloguj}" sec:authorize="isAuthenticated()" class="btn btn-primary">Wyloguj</a>
         </div>
     </div>
 </header>
