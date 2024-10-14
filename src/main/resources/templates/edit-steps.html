@@ -9,7 +9,7 @@
 
 <main layout:fragment="content">
 
-    <nav class="nav general-edition-navigation">
+    <nav class="nav navbar-light bg-light general-edition-navigation">
         <a class="nav-link btn btn-primary btn-sm"
            href="#"
            th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
@@ -34,13 +34,6 @@
                         <div class="col">
                             <h4 th:text="|Krok ${iStat.count}:|" style="display: inline"></h4>
                         </div>
-                        <div class="col text-right">
-                            <button class="btn btn-primary btn-sm step-delete-btn"
-                                    name="deleteStepId"
-                                    th:value="${step.id}">
-                                Usuń krok
-                            </button>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg">
@@ -51,17 +44,25 @@
                             </textarea>
                         </div>
                     </div>
+                    <div class="text-center mt-0">
+                        <button class="btn btn-primary btn-sm step-delete-btn"
+                                name="deleteStepId"
+                                th:value="${step.id}">
+                            Usuń krok
+                        </button>
+                    </div>
                 </div>
 
-                <div class="container ingredients-edition-container">
+                <div class="container ingredients-edition-container mt-4">
                     <div class="row steps-edition-plus-icon-row">
                         <div class="col-lg">
                             <button type="submit" name="addStep" value="true" class="steps-edition-add-ingredient-btn">
                                 <i class="bi bi-plus-square plus-icon"></i>
+                                Dodaj nowy krok
                             </button>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-lg text-center">
                             <button type="submit" class="btn btn-primary">Zapisz wszystkie kroki w bazie</button>
                         </div>

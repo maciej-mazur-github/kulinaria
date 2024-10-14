@@ -18,7 +18,9 @@
 <h1 align="center">
 
 [![Spring](https://img.shields.io/badge/Spring_boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)](https://spring.io/projects/spring-security)
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/pl/java/technologies/downloads/#java21)
+[![Lombok](https://img.shields.io/badge/Project_Lombok-ED8B00?style=for-the-badge&logoColor=white)](https://projectlombok.org/)
 [![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)](https://hibernate.org/)
 [![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://dev.mysql.com/doc/refman/8.4/en/language-structure.html)
 [![H2_Database](https://img.shields.io/badge/H2_Database-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.h2database.com/html/main.html)
@@ -55,6 +57,8 @@
     <h1>View Live Demo</h1>
   </a> 
   <a href="https://www.kulinaria.codingproductions.com" target="_blank"><img alt="arrow_gif" src="images/github_readme/arrows.gif" height="100"></a> 
+  <br>
+  <a href="#">(please contact me for login credentials details)</a> 
 </h2>
 
 
@@ -85,11 +89,9 @@
     <li>
       <a href="#project-expansion-plans">Project Expansion Plans</a>
       <ul>
-        <li><a href="#implementing-spring-security">Implementing Spring Security</a></li>
         <li><a href="#implementing-api">Implementing API</a></li>
         <li><a href="#filtering-recipes-by-name">Filtering recipes by name</a></li>
         <li><a href="#unit-testing">Unit testing</a></li>
-        <li><a href="#responsive-design-for-smartphones">Responsive design for smartphones</a></li>
       </ul>
     </li>
   </ol>
@@ -97,11 +99,19 @@
 <br><br><br>
 ## About The Project
 
+<h3 align="center">Home Page (laptop-like wide screen device)</h4>
+
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 <p align="center">
   <img alt="Kulinaria_screenhot" title="Kulinaria screenhot" src="images/github_readme/homepage_screenshot.png" width="1200">
 </p>
 </div>
+
+<br>
+<h3 align="center">Filtered recipes view (smartphone device)</h4>
+<p align="center">
+  <img alt="txt_files_graphic" title="Txt files" src="images/github_readme//recipes_mobile.png" width="250">
+</p>
 
 
 This is a training Java application built for the purpose of myself evolving in the area of full stack programming focused on Java related technologies.<br><br> It is a Cookbook, still in the process of adding many more features in the near future. <br>
@@ -116,13 +126,19 @@ At this point project's UI is held in Polish language as a part of simulating ch
 ### In this application you can:
 
 - view the list of either all or categorized (dinners, salads, pasta, sandwiches) cooking recipes
-- view the details of the chosen recipe (time of preparation, category, type, vote count, ingredients, preparation steps, photo)
+- view the details of the chosen recipe (time of preparation, category, type, ingredients, preparation steps, photo)
+- view the service content on different screen width devices **(pages are implemented as fully responsive, with different forms applied for different screen widths)**
 - filter the recipes by type (meat or vegetarian) or clear the filter at any time
 - sort recipes by title, vote number or preparation time (ascending and descending)
 - use pagination to navigate through filtered and/or sorted recipe list
-- edit each and every one of above mentioned details
-- delete any recipe from database
-- add a new recipe to the database
+- **If you are logged in, you can:**
+  - add a new photo or replace the existing one with local disk image file 
+  - vote up or down any recipe 
+  - modify preparation time, meal category and meal type (meat vs. vegetarian)
+  - delete any recipe from the database 
+  - add a new recipe to the database 
+  - add new ingredients and modify or delete the existing ones 
+  - add new preparation steps and modify or delete the existing ones 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -134,14 +150,16 @@ At this point project's UI is held in Polish language as a part of simulating ch
 | Technology / Language     | Description |
 | -----------: | ----------- |
 |[![Spring](https://img.shields.io/badge/Spring_boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot) | Spring boot 3.3.3, Spring Data JPA, Spring MVC|
+|[![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)](https://spring.io/projects/spring-security) | For preventing unauthorized users from modifying recipe data and from voting|
 |[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/pl/java/technologies/downloads/#java21)|Oracle JDK 21.0.3|
+|[![Lombok](https://img.shields.io/badge/Project_Lombok-ED8B00?style=for-the-badge&logoColor=white)](https://projectlombok.org/)|Used a bit to reduce a code bloat when implementing Spring Security related classes|
 |[![RegEx](https://img.shields.io/badge/Regex-ED8B00?style=for-the-badge&logoColor=white)](https://www.regular-expressions.info/tutorial.html)| Especially for filtering and converting plain text data to SQL scripts |
 |[![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)](https://hibernate.org/)|For automatic table creation and test data upload|
 | [![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://dev.mysql.com/doc/refman/8.4/en/language-structure.html) | Used along with Hibernate to load test data to tables |
 |[![H2_Database](https://img.shields.io/badge/H2_Database-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.h2database.com/html/main.html) | Used as a convenient replacement for external database like MySQL. At this point H2 Database fully meets project's requirements |
 |[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)](https://www.thymeleaf.org/)| Used as part of Spring MVC to build dynamic server web pages|
 |[![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) | Pretty extensive use of HTML 5 and CSS 3 capabilities |
-|[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) |Version 4.3.1, used especially for styling and resizing recipe ingredients and preparation steps tables|
+|[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) |Version 5.3.3, used especially for styling, page responsiveness and resizing recipe ingredients and preparation steps tables|
 |[![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/) | Github used as a remote repository both for my local OS (Windows) repository and for VPS OS (Debian) repository |
 |[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) |Installed on remote VPS. Dockerfile used for multi-stage build (Maven image to build JAR file and JDK image to run the actual application container). Also Nginx Proxy Manager container used for port forwarding and for HTTPS SSL |
 [![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)](https://www.debian.org/) | Debian GNU/Linux 12 (bookworm) used as a Virtual Private Server (VPS) |
@@ -156,16 +174,16 @@ At this point project's UI is held in Polish language as a part of simulating ch
 The goal was to automate the creation of SQL scripts that would further be used to load test data to all database tables. The additional target was to use the pre-existing plain text containing all recipe ingredients, amounts and preparation descriptions. Hence any online SQL generator had to be omitted. <br><br>Creating all SQL DML queries manually would be an incredibly tedious task to do, therefore I decided to implement a separate project class (com.kulinaria.utils.TestDataCreator) with its own main function to use it once only and to let it create all the necessary SQL files with all the necessary DML queries in them for me automatically. <br><br>This allowed me to transform the following .txt files:
 
 <p align="center">
-  <img alt="txt_files_graphic" title="Txt files" src="images/github_readme/txt_files.png" width="300">
+  <img alt="txt_files_graphic" title="Txt files" src="images/github_readme/txt_files.png" width="250">
 </p>
 <p align="center">
     <a href=""></a>
-  <img alt="txt_file_fragment" title="Txt file content fragment" src="images/github_readme/txt_example_content.png" width="800">
+  <img alt="txt_file_fragment" title="Txt file content fragment" src="images/github_readme/txt_example_content.png" width="900">
 </p>
 
 <br><br>...into these full-fledged SQL scripts further used by Hibernate / Spring Data JPA to load all the expected test data to the tables:
 <p align="center">
-  <img alt="sql_files_graphic" title="SQL files" src="images/github_readme/sql_files.png" width="200">
+  <img alt="sql_files_graphic" title="SQL files" src="images/github_readme/sql_files.png" width="150">
 </p>
 <p align="center">
   <img alt="sql_file_fragment" title="SQL file content fragment" src="images/github_readme/sql_content_fragment.png" width="900">
@@ -195,7 +213,7 @@ Also note that when a particular recipe details are viewed, its link showing up 
 
 
 <p align="center">
-  <img alt="links_with_recipe_title.png" title="Recipe details with link containing recipe title screenshot" src="images/github_readme/links_with_recipe_title.png" width="900">
+  <img alt="links_with_recipe_title.png" title="Recipe details with link containing recipe title screenshot" src="images/github_readme/links_with_recipe_title.png" width="1000" style="border: 1px solid lightgrey;">
 </p>
 
 
@@ -273,12 +291,6 @@ This allows the application to operate on the photo files in the conainer outsid
 
 ## Project Expansion Plans
 
-### Implementing Spring Security
-
-At this point the application is lacking verification and authorization mechanisms. Therefore no user is asked for access credentials and anyone is capable of performing all the [actions mentioned earlier](#action-list). This is where Spring Security will come in handy which I will implement in the near future, just as I have already successfully done in another one of my projects (https://github.com/maciej-mazur-github/ofertownia.git). Users will be authorized to browse recipe lists and details. Administrators will be allowed to promote plain users to the role of administrators, add, edit or remove recipes from the database. Probably there will also be a role of super administrator who will have the power to degrade administrators back to the role of a plain user and to remove administrators and users from the database.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Implementing API
 
 I think it would be a good idea for the application to provide all the recipes in the form of REST API, just like I have done it in the project https://github.com/maciej-mazur-github/ofertownia.git.
@@ -299,11 +311,6 @@ As of yet the application is lacking the proper name filtering function that wou
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Responsive design for smartphones
-
-Currently the application front end is projected nicely on tablets and all other wider screen devices. Projecting it on the smartphones still needs to be taken care of by designing and implementing a different page elements distribution.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 

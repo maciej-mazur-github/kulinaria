@@ -3,8 +3,51 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
+
+<nav th:fragment="nav"
+     class="navbar navbar-expand-md navbar-dark"
+     style="background-color: #eb4034; background-image: linear-gradient(to bottom right, darkred , #eb4034);"
+     aria-label="Fourth navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand ml-3" href="/" th:href="@{/}">Kulinaria</a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 ml-3 mb-md-0">
+                <li class="nav-item active">
+                    <a class="nav-link active" th:href="@{/kategorie}">Kategorie potraw</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item active d-none d-md-block">
+                    <span class="nav-link active">|</span>
+                </li>
+                <li class="nav-item active" sec:authorize="authenticated">
+                    <a class="nav-link active" aria-current="page" th:href="@{/przepis/dodaj}">Dodaj przepis</a>
+                </li>
+                <li class="nav-item active d-none d-md-block" sec:authorize="authenticated">
+                    <span class="nav-link active">|</span>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item active">
+                    <a class="nav-link active"  href="/zaloguj" th:href="@{/zaloguj}">Zaloguj</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item active">
+                    <a class="nav-link active"  href="/wyloguj" th:href="@{/wyloguj}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <header th:fragment="header">
-    <div class="container-lg header" th:style="|background-image:url(@{/img/home_background.jpg})|">
+    <div class="header jumbotron container-fluid text-center"
+         th:style="|background-image:url(@{/img/home_background.jpg}); background-color: rgba(255,255,255,0); background-blend-mode: lighten;|">
         <a th:href="@{/}"
            href="/">
             <div class="header-text">
@@ -12,14 +55,6 @@
                 <p>Tutaj znajdziesz swój ulubiony przepis kulinarny!</p>
             </div>
         </a>
-        <div class="logo-buttons">
-            <a th:href="@{/przepis/dodaj}" href="" class="btn btn-primary">Dodaj nowy przepis</a>
-            <a th:href="@{/kategorie}" href="" class="btn btn-primary">Wyświetl kategorie potraw</a>
-        </div>
-        <div class="logo-buttons">
-            <a th:href="@{/zaloguj}" sec:authorize="!isAuthenticated()" class="btn btn-primary">Zaloguj</a>
-            <a th:href="@{/wyloguj}" sec:authorize="isAuthenticated()" class="btn btn-primary">Wyloguj</a>
-        </div>
     </div>
 </header>
 

@@ -1,3 +1,42 @@
+body {
+    min-height: 300px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*.nav-link {*/
+/*    color: white; !important;*/
+/*}*/
+
+/*.nav-link:hover {*/
+/*    background-color: darkgreen; !important;*/
+/*    color: white; !important;*/
+/*}*/
+
+.category-item div > img,
+.category-item-chosen div > img {
+    filter: brightness(50%);
+}
+
+.category-item div > h2,
+.category-item-chosen div > h2 {
+    color: white;
+}
+
+.category-item div > img:hover {
+    filter: brightness(80%);
+}
+
+.edition-border {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
 .content {
     width: 100%;
     max-width: 1000px;
@@ -10,11 +49,11 @@
 }
 
 .header {
-    width: 100%;
+    /*width: 100%;*/
     background-position: bottom center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-    padding: 50px 100px;
+    padding: 50px 50px;
     margin: 0;
 }
 
@@ -66,7 +105,12 @@
 }
 
 .top4-recipe {
-    margin-top: 30px;
+    background-color: rgba(0, 128, 0, 0.1);
+    padding: 20px;
+}
+
+.top4-recipe:hover {
+    background-color: rgba(0, 128, 0, 0.3);
 }
 
 .top4-recipe > p {
@@ -81,7 +125,7 @@
 
 .top4-image {
     border-radius: 5px;
-    width: 80%;
+    width: 40%;
 }
 
 .create-title-cat-fields {
@@ -93,11 +137,11 @@
     margin-top: 10px;
 }
 
-.main-home-content {
-    display: flex;
-    flex-direction: column;
-    color: grey;
-}
+/*.main-home-content {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    color: grey;*/
+/*}*/
 
 .main-home-content * {
     color: grey;
@@ -118,15 +162,16 @@
     display: inline-block;
     margin: 30px auto;
     text-align: center;
-    background-color: rgba(0, 128, 0, 0.3);
+    background-color: rgba(0, 128, 0, 0.1);
     padding: 20px;
     font-size: 2em;
     border-radius: 10px;
+    color: grey;
 }
 
 .show-all-categories:hover {
     text-decoration: none;
-    background-color: rgba(0, 128, 0, 0.7);
+    background-color: rgba(0, 128, 0, 0.3);
 }
 
 .recipe-item:hover {
@@ -146,7 +191,7 @@
 }
 
 .general-edition-navigation {
-    margin: 30px auto;
+    margin: 0 auto 30px auto;
     padding: 30px;
     display: flex;
     justify-content: space-evenly;
@@ -233,7 +278,7 @@
 }
 
 .filter-sort-buttons {
-    background-color: lightgreen;
+    background-color: white;
     padding: 5px;
 }
 
@@ -276,7 +321,7 @@
     .recipe-list-time,
     .recipe-list-img,
     .prep-time {
-        text-align: right;
+        text-align: center;
     }
     .prep-time {
         display: flex;
@@ -424,7 +469,7 @@
         display: flex;
         flex-direction: column;
         align-items: center!important;
-        margin: 50px;
+        margin: 20px;
         border: 1px solid grey;
         border-radius: 10px;
     }
@@ -615,9 +660,9 @@
 
 .recipe-link {
     text-decoration: none;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+    /*display: flex;*/
+    /*justify-content: start;*/
+    /*align-items: center;*/
     width: 100%;
     padding: 10px;
     background-color: rgba(255, 34, 33, 0.1);
@@ -709,19 +754,28 @@
 
 .pagination,
 .pagination * {
-    color: green;
+    color: red;
 }
 
+
+
 .page-item.active .page-link {
-    background-color: darkgreen;
+    background-color: darkred;
 }
 
 .pagination {
-    margin: 20px auto 0 auto;
+    /*margin: 20px auto 0 auto;*/
 }
 
 .btn-primary {
-    background-color: green;
+    background-color: #eb4034;
+    border-color: black;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #96261e;
+    color: white;
 }
 
 .recipe-description {
@@ -774,6 +828,7 @@
     width: 100%;
     display: flex;
     align-items: start;
+    justify-content: center;
 }
 
 .general-edition-content-row > div {
@@ -894,8 +949,8 @@
     background-color: limegreen;
 }
 
-.btn-success:not(:disabled):not(.disabled).active {
-    background-color: darkgreen;
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: darkred;
 }
 
 .filters-content {
@@ -928,10 +983,10 @@
 }
 
 .recipes-pagination {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    min-width: 700px;
+    /*display: flex;*/
+    /*align-items: baseline;*/
+    /*justify-content: center;*/
+    /*min-width: 700px;*/
 }
 
 

@@ -43,18 +43,26 @@
                         <input type="hidden" th:field="${recipe.title}">
                         <input type="hidden" th:field="${recipe.category}">
 
-                        <button type="submit" class="btn btn-primary btn-sm">Tak, usuń przepis z bazy</button>
-                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).backFromDeletionConfirmationLink()}"
-                           th:href="@{${linkCreator}}"
-                           href="" class="btn btn-primary btn-sm">
-                            Powrót do ogólnego widoku edycji
-                        </a>
-                        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm w-100">Tak,<br> usuń przepis z bazy</button>
+                            </div>
+                            <div class="col-md-4">
+                                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).backFromDeletionConfirmationLink()}"
+                                   th:href="@{${linkCreator}}"
+                                   href="" class="btn btn-primary btn-sm w-100">
+                                    Powrót do ogólnego<br> widoku edycji
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
                 .backToNormalRecipeDetailsViewInDeletionConfirmationLink()}"
-                           th:href="@{${linkCreator}}"
-                           href="" class="btn btn-primary btn-sm">
-                            Powrót do ogólnego widoku przepisu
-                        </a>
+                                   th:href="@{${linkCreator}}"
+                                   href="" class="btn btn-primary btn-sm w-100">
+                                    Powrót do ogólnego widoku przepisu
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

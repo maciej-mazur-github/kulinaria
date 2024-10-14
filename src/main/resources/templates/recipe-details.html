@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <head>
     <title>Szczegóły przepisu</title>
@@ -8,21 +9,24 @@
 <body>
 
 <main layout:fragment="content">
-    <nav class="nav general-edition-navigation">
+
+    <nav class="nav navbar-light bg-light general-edition-navigation">
         <a class="nav-link btn btn-primary btn-sm"
            href="#"
            th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).backToRecipesListWithFiltersAndSorting()}"
            th:href="@{${linkCreator}}"
-           th:text="|Powrót do przepisów kategorii ${recipe.category.name}|">
+           th:text="|Powrót do kategorii ${recipe.category.name}|">
             Active
         </a>
         <a class="nav-link btn btn-primary btn-sm"
+           sec:authorize="authenticated"
            href="#"
            th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditLink()}"
            th:href="@{${linkCreator}}">
             Edytuj przepis
         </a>
         <a class="nav-link btn btn-primary btn-sm"
+           sec:authorize="authenticated"
            href="#"
            th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
                                 .createDeleteInRecipeDetailsLink(recipe.title, recipe.id)}"
@@ -35,29 +39,35 @@
     <div class="container general-edition-all-fields-container">
         <div class="container text-center general-edition-all-fields">
             <div class="row general-edition-content-row">
-                <div class="col-xl text-left ">
+                <div class="col-xl text-center ">
                     <div class="recipe-title-time">
-                        <h2 th:text="${recipe.title}"></h2>
-                        <div class="votes-time-type">
-                            <div class="prep-time">
+                        <h2 th:text="${recipe.title}" class="mb-4"></h2>
+                        <br>
+                        <div class="fs-4 d-flex flex-column flex-md-row align-items-center justify-content-evenly justify-content-md-evenly h-100 w-100">
+                            <div class="prep-time mb-5">
                                 <i class="bi bi-clock"></i>
                                 <span th:text="|${recipe.prepTime} min.|"></span>
                             </div>
-                            <div class="meal-type">
-                                <span th:text="|Kategoria: ${recipe.category.name}|"></span>
+                            <div class="mb-5">
+                                <span>Kategoria:</span>
+                                <br>
+                                <span th:text="${recipe.category.name}"></span>
                             </div>
-                            <div class="meal-type">
-                                <span th:if="${recipe.mealType}" th:text="|Typ dania: ${recipe.mealType.translation.toLowerCase()}|"></span>
+                            <div class="mb-5">
+                                <span>Typ dania:</span>
+                                <br>
+                                <span th:if="${recipe.mealType}" th:text="${recipe.mealType.translation.toLowerCase()}"></span>
                             </div>
                         </div>
+
                         <div class="voting">
-                            <form th:action="@{|/glosuj?id=${recipe.id}&vote=up|}" method="post">
+                            <form th:action="@{|/glosuj?id=${recipe.id}&vote=up|}" method="post" sec:authorize="authenticated">
                                 <button class="vote-button"><i class="bi bi-hand-thumbs-up-fill"></i></button>
                             </form>
 
                             <span th:text="|Głosy: ${recipe.vote.result}|"></span>
 
-                            <form th:action="@{|/glosuj?id=${recipe.id}&vote=down|}" method="post" >
+                            <form th:action="@{|/glosuj?id=${recipe.id}&vote=down|}" method="post" sec:authorize="authenticated">
                                 <button class="vote-button"><i class="bi bi-hand-thumbs-down-fill vote-down"></i></button>
                             </form>
 
@@ -67,9 +77,9 @@
 
                 <div class="col-xl ">
                     <img  th:if="${recipe.imageUrl ne null}"
-                          th:src="${recipe.imageUrl}" alt="zdjęcie potrawy" id="image-to-change" class="img-fluid ">
+                          th:src="${recipe.imageUrl}" alt="zdjęcie potrawy" id="image-to-change" class="img-fluid rounded">
                     <img th:if="${recipe.imageUrl eq null}"
-                         th:src="@{/recipes/empty-photo.jpg}" id="empty-image-to-change" alt="pusta grafika" class="img-fluid">
+                         th:src="@{/recipes/empty-photo.jpg}" id="empty-image-to-change" alt="pusta grafika" class="img-fluid rounded">
                 </div>
             </div>
             <div class="row general-edition-content-row">

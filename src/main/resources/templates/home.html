@@ -9,33 +9,39 @@
 
 <main layout:fragment="content">
 
-<!--    <img referrerpolicy="no-referrer-when-downgrade" src="https://p.malpka.eu/matomo.php?idsite=11&amp;rec=1" style="border:0" alt="" />-->
+    <img referrerpolicy="no-referrer-when-downgrade" src="https://p.malpka.eu/matomo.php?idsite=11&amp;rec=1" style="border:0" alt="" />
 
-    <div class="container-lg main-home-content">
-        <a th:href="@{/kategorie}" href="/kategorie" class="show-all-categories">Zobacz wszystkie dostępne przepisy</a>
-        <h1 style="text-align: center" class="mt-4">NAJPOPULARNIEJSZE PRZEPISY</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <a th:href="@{/kategorie}" href="/kategorie" class="show-all-categories">Zobacz wszystkie dostępne przepisy</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="mt-4 text-secondary">NAJPOPULARNIEJSZE PRZEPISY</h1>
+            </div>
+        </div>
 
-        <div class="top4-list">
+        <div class="w-75 text-center mx-auto">
             <a th:each="recipe: ${top4Recipes}"
-               class="top4-recipe recipe-item"
                th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
                         .createTop4HomeLink(recipe.category.name, recipe.title, recipe.id)}"
-               th:href="@{${linkCreator}}"
-               href="#">
-                <div class="container text-center">
-                    <div class="row d-flex align-items-center home-page-row">
-                        <div class="col-lg">
-                            <div>
-                                <h2 th:text="|${recipe.title}|"></h2>
-                                <p th:text="|Liczba głosów: ${recipe.vote.result}|"></p>
-                            </div>
+               th:href="@{${linkCreator}}">
+
+                <div class="row text-center d-flex align-items-center mb-5 text-secondary top4-recipe rounded">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h2 th:text="|${recipe.title}|"></h2>
                         </div>
-                        <div class="col-lg">
-                            <img th:src="@{${recipe.imageUrl}}" th:alt="|recipe${recipe.id}|" class="top4-image">
+                        <div class="row">
+                            <p th:text="|Liczba głosów: ${recipe.vote.result}|"></p>
                         </div>
                     </div>
+                    <div class="col-md-6 h-50">
+                        <img th:src="@{${recipe.imageUrl}}" th:alt="|recipe${recipe.id}|" class="img-fluid rounded w-75">
+                    </div>
                 </div>
-
             </a>
         </div>
     </div>

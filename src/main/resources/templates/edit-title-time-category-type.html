@@ -8,7 +8,7 @@
 <body>
 
 <main layout:fragment="content">
-    <nav class="nav general-edition-navigation">
+    <nav class="nav navbar-light bg-light general-edition-navigation">
         <a class="nav-link btn btn-primary btn-sm"
            href="#"
            th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
@@ -18,76 +18,64 @@
         </a>
     </nav>
 
-    <form th:action="@{/zapisz-tytul-kategorie-czas-typ}"
-          action=""
-          method="post"
-          th:object="${recipe}">
-        <input type="hidden" th:field="*{id}">
+    <div class="container container-main">
+        <form th:action="@{/zapisz-tytul-kategorie-czas-typ}"
+              action=""
+              method="post"
+              th:object="${recipe}"
+              class="col-8 mx-auto mb-5 mt-5">
+            <input type="hidden" th:field="*{id}">
 
-        <div class="container general-edition-all-fields-container">
-            <div class="container text-center general-edition-all-fields edit-title-category-time-type-form">
-                <div class="row general-edition-content-row">
-                    <div class="col-lg text-center ">
-<!--                        <textarea th:field="*{title}" cols="50" rows="2" placeholder="Podaj tytuł przepisu..."></textarea>-->
-                        <input th:field="*{title}"
-                               type="text"
-                               size="60"
-                               placeholder="Podaj tytuł przepisu..."
-                               required
-                               maxlength="100"
-                               pattern="[A-Ża-ż ]+"
-                               title="Dozwolone znaki to litery duże, małe oraz spacje. Maksymalnie 100 znaków łącznie.">
-                    </div>
-                </div>
-                <div class="row general-edition-content-row">
-                    <div class="col-lg general-edition-ingredients">
-                        <select class="form-select form-select-lg mb-3"
-                                aria-label="Large select example"
-                                name="categoryEnum"
-                                th:with="currentCategory=*{category}"
-                                required>
-                            <option selected value="">Wybierz kategorię potrawy</option>
-                            <option th:each="catName: ${T(com.kulinaria.category.CategoryEnum).values()}"
-                                    th:value="${catName}"
-                                    th:text="${catName.dbName}"
-                                    th:selected="${currentCategory.name eq catName.dbName}"
-                                    value="1">One
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-lg general-edition-ingredients">
-                        <div class="prep-time">
-                            <i class="bi bi-clock"></i>
-                            <div>
-                                <input type="number" th:field="*{prepTime}" class="prep-time-edit" min="0" max="400" step="1">
-                                <span>min.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg general-edition-ingredients">
-                        <select class="form-select form-select-lg mb-3"
-                                aria-label="Large select example"
-                                th:field="*{mealType}"
-                                th:with="currentMealType=*{mealType}" required>
-                            <option selected value="">Wybierz typ dania</option>
-                            <block th:each="type: ${T(com.kulinaria.shared.MealType).values()}">
-                                <option th:value="${type}"
-                                        th:text="${type.translation}"
-                                        th:selected="${currentMealType eq type}"
-                                        value="1">One
-                                </option>
-                            </block>
-                        </select>
-                    </div>
-                </div>
-                <div class="row general-edition-content-row">
-                    <div class="col-lg text-center">
-                        <button class="btn btn-primary save-recipe-btn">Zapisz</button>
-                    </div>
-                </div>
+            <div class="form-group mb-3">
+                <label for="descriptionInput">Tytuł przepisu</label>
+                <input class="form-control"
+                          id="descriptionInput"
+                          placeholder="Podaj tytuł przepisu..."
+                          th:field="*{title}"
+                          required
+                          maxlength="100"
+                          pattern="[A-Ża-ż ]+"
+                          title="Dozwolone znaki to litery duże, małe oraz spacje. Maksymalnie 100 znaków łącznie.">
             </div>
-        </div>
-    </form>
+            <div class="form-group mb-4">
+                <label for="categorySelect">Kategoria potrawy</label>
+                <select class="form-select" id="categorySelect" name="categoryEnum" required th:with="currentCategory=*{category}">
+                    <option th:each="catName: ${T(com.kulinaria.category.CategoryEnum).values()}"
+                            th:value="${catName}"
+                            th:text="${catName.dbName}"
+                            th:selected="${currentCategory.name eq catName.dbName}"
+                            value="1">One
+                    </option>
+                </select>
+            </div>
+            <div class="form-group mb-4">
+                <label for="mealType">Typ dania</label>
+                <select class="form-select" id="mealType" th:field="*{mealType}" required th:with="currentMealType=*{mealType}">
+                    <option th:each="type: ${T(com.kulinaria.shared.MealType).values()}"
+                            th:value="${type}"
+                            th:text="${type.translation}"
+                            th:selected="${currentMealType eq type}"
+                            value="1">One
+                    </option>
+                </select>
+            </div>
+            <div class="form-group mb-4">
+                <label for="preparationTime">Czas przygotowania (w minutach)</label>
+                <input class="form-control"
+                       id="preparationTime"
+                       placeholder="Podaj czas przygotowania..."
+                       th:field="*{prepTime}"
+                       required
+                       min="0"
+                       max="400"
+                       step="1">
+            </div>
+            <div class="form-group mb-4 text-center">
+                <button class="btn btn-primary" type="submit">Zapisz</button>
+            </div>
+        </form>
+    </div>
+
 </main>
 
 </body>
