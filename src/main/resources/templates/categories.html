@@ -8,28 +8,37 @@
 <body>
 
 <main layout:fragment="content">
-    <ul class="category-block">
-        <li th:each="category: ${categories}">
-            <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
-                    .createLinkToCategoryRecipes(category.getUrlName())}"
 
-               th:href="@{${linkCreator}}"
-               href=""
-               class="category-link">
-                <img th:src="${category.imageUrl}" alt="kolacja">
-                <h2 th:text="${category.name.toUpperCase()}"></h2>
-            </a>
-        </li>
-    </ul>
-    <div class="all-categories-div">
-        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+    <div class="container-fluid w-75 mt-4">
+        <div class="row">
+            <div class="col-lg-6 category-item mb-4" th:each="category: ${categories}">
+                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+                    .createLinkToCategoryRecipes(category.getUrlName())}"
+                   th:href="@{${linkCreator}}">
+                    <div class="position-relative text-center">
+                        <img th:src="${category.imageUrl}" alt="kolacja" class="img-fluid rounded">
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <h2 th:text="${category.name.toUpperCase()}" ></h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12"></div>
+
+            <div class="col text-center category-item">
+                <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
                     .createLinkToCategoryRecipes('wszystkie')}"
-           th:href="@{${linkCreator}}"
-           href=""
-           class="all-categories-link">
-            <img th:src="@{/img/home_background.jpg}" src="/home_background.jpg" alt="kolacja">
-            <h2>WSZYSTKIE PRZEPISY</h2>
-        </a>
+                   th:href="@{${linkCreator}}">
+                    <div class="position-relative text-center">
+                        <img th:src="@{/categories/category5.jpg}" src="/home_background.jpg" alt="kolacja" class="img-fluid rounded" style="box-sizing: border-box">
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <h2>WSZYSTKIE PRZEPISY</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 
 </main>

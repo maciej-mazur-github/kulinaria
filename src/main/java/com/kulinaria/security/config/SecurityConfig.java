@@ -43,7 +43,8 @@ public class SecurityConfig {
                         mvc.pattern(HttpMethod.GET, "/przepis/dodaj"),
                         mvc.pattern(HttpMethod.GET, "/kategorie/*/przepis/*/edycja"),
                         mvc.pattern(HttpMethod.GET, "/kategorie/*/przepis/*/edycja/*"),
-                        mvc.pattern(HttpMethod.POST, "/zapisz-zdjecie"))
+                        mvc.pattern(HttpMethod.POST, "/zapisz-zdjecie"),
+                        mvc.pattern(HttpMethod.POST, "/glosuj"))
                 .authenticated()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                 .requestMatchers(

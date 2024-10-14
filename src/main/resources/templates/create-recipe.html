@@ -7,36 +7,37 @@
 </head>
 <body>
 
-<main layout:fragment="content">
-    <form th:action="@{/przepis/dodaj}" action="" method="post">
-        <div class="container text-center create-title-cat-fields">
-            <div class="row">
-                <div class="col-lg">
-                    <textarea name="recipeTitle" cols="50" rows="2" placeholder="Podaj tytuł przepisu..." required></textarea>
-                </div>
+
+<main class="container container-main"
+     layout:fragment="content">
+    <form class="col-8 mx-auto mb-5 mt-5" id="add-form" th:action="@{/przepis/dodaj}" action="" method="post">
+        <div class="form-group mb-3">
+            <label for="descriptionInput">Tytuł przepisu</label>
+            <input class="form-control"
+                   id="descriptionInput"
+                   name="recipeTitle"
+                   placeholder="Podaj tytuł przepisu..."
+                   required
+                   maxlength="100"
+                   pattern="[A-Ża-ż ]+"
+                   title="Dozwolone znaki to litery duże, małe oraz spacje. Maksymalnie 100 znaków łącznie.">
+        </div>
+        <div class="form-group mb-4">
+            <label for="categorySelect">Kategoria potrawy</label>
+            <select class="form-select" id="categorySelect" name="categoryFromForm" required>
+                <option th:each="catName: ${T(com.kulinaria.category.CategoryEnum).values()}"
+                        th:value="${catName}"
+                        th:text="${catName.dbName}"
+                        value="1">One
+                </option>
+            </select>
+        </div>
+        <div class="form-group row text-center">
+            <div class="col-md-6 mb-3">
+                <button type="submit" class="btn btn-primary w-100">Dodanie do bazy <br> i dalsza edycja</button>
             </div>
-            <div class="row">
-                <div class="col-lg">
-                    <select class="form-select form-select-lg mb-3"
-                            aria-label="Large select example"
-                            name="categoryFromForm"
-                            required>
-                        <option selected value="">Wybierz kategorię potrawy</option>
-                        <option th:each="catName: ${T(com.kulinaria.category.CategoryEnum).values()}"
-                                th:value="${catName}"
-                                th:text="${catName.dbName}"
-                                value="1">One
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-lg-end">
-                <div class="col-lg">
-                    <button type="submit" class="btn btn-primary">Dodaj nowy przepis do bazy i przejdź do edycji</button>
-                </div>
-                <div class="col-lg">
-                    <a th:href="@{/}" href="" class="btn btn-primary">Rezygnuję</a>
-                </div>
+            <div class="col-md-6 mb-3">
+                <a th:href="@{/}" href="" class="btn btn-primary w-100">Powrót do <br>strony głównej</a>
             </div>
         </div>
     </form>

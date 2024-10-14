@@ -8,7 +8,7 @@
 <body>
 
 <main layout:fragment="content">
-    <nav class="nav general-edition-navigation">
+    <nav class="nav navbar-light bg-light general-edition-navigation">
         <a class="nav-link btn btn-primary btn-sm"
            href="#"
            th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
@@ -18,51 +18,55 @@
         </a>
     </nav>
 
-    <form action=""
-          method="post"
-          th:action="@{/zapisz-skladniki}"
-          th:object="${recipe}"
-          class="edit-ingredients-container-form">
-        <input type="hidden" th:field="*{id}">
+    <div class="container container-main">
+        <form action=""
+              method="post"
+              th:action="@{/zapisz-skladniki}"
+              th:object="${recipe}"
+              class="edit-ingredients-container-form">
+            <input type="hidden" th:field="*{id}">
 
-        <div class="container ingredients-edition-container">
-            <div class="row ingredients-edition-row"
-                 th:each="ingredient, itemStat: *{ingredients}">
-                <div class="col-lg ingredients-edition-textarea-col">
+            <div class="container">
+                <div class="row ingredients-edition-row"
+                     th:each="ingredient, itemStat: *{ingredients}">
+                    <div class="col-lg ingredients-edition-textarea-col">
                     <textarea th:field="*{ingredients[__${itemStat.index}__].name}"
                               cols="40" rows="2"
-                              placeholder="Podaj nazwę składnika...">
+                              placeholder="Podaj nazwę składnika..." class="mx-auto">
                     </textarea>
+                    </div>
+                    <div class="col-lg ingredients-edition-dots-col">
+                        <span class="edit-ingredients-dots"></span>
+                    </div>
+                    <div class="col-lg ingredients-edition-amount-col">
+                        <input type="text"
+                               th:field="*{ingredients[__${itemStat.index}__].amount.amountValue}"
+                               placeholder="Podaj ilość...">
+                    </div>
+                    <div class="col-lg ingredients-edition-delete-btn-col">
+                        <button name="deleteIngredientIndex"
+                                th:value="${itemStat.index}"
+                                class="btn btn-primary btn-sm delete-ingredient-btn">Usuń z bazy</button>
+                    </div>
                 </div>
-                <div class="col-lg ingredients-edition-dots-col">
-                    <span class="edit-ingredients-dots"></span>
+                <div class="row mb-4">
+                    <div class="col-lg">
+                        <button type="submit" name="addIngredient" value="true" class="ingredients-edition-add-ingredient-btn">
+                            <i class="bi bi-plus-square plus-icon"></i>
+                            Dodaj nowy składnik
+                        </button>
+                    </div>
                 </div>
-                <div class="col-lg ingredients-edition-amount-col">
-                    <input type="text"
-                           th:field="*{ingredients[__${itemStat.index}__].amount.amountValue}"
-                           placeholder="Podaj ilość...">
-                </div>
-                <div class="col-lg ingredients-edition-delete-btn-col">
-                    <button name="deleteIngredientIndex"
-                            th:value="${itemStat.index}"
-                            class="btn btn-primary btn-sm delete-ingredient-btn">Usuń z bazy</button>
+                <div class="row">
+                    <div class="col-lg text-center">
+                        <button type="submit" class="btn btn-primary">Zapisz składniki w bazie</button>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg">
-                    <button type="submit" name="addIngredient" value="true" class="ingredients-edition-add-ingredient-btn">
-                        <i class="bi bi-plus-square plus-icon"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg text-center">
-                    <button type="submit" class="btn btn-primary">Zapisz składniki w bazie</button>
-                </div>
-            </div>
-        </div>
 
-    </form>
+        </form>
+    </div>
+
 </main>
 
 </body>

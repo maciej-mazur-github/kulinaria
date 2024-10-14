@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <head>
     <title>Tryb edycji</title>
@@ -13,51 +14,54 @@
 <body>
 
 <main layout:fragment="content">
-    <div class="general-edition-navigation">
-        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+    <nav class="nav navbar-light bg-light general-edition-navigation">
+        <a class="nav-link btn btn-primary btn-sm"
+           th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
                                 .backToNormalRecipeDetailsViewLink()}"
-           th:href="@{${linkCreator}}"
-           href=""
-           class="btn btn-primary ">
+           th:href="@{${linkCreator}}">
             Powrót do normalnego widoku przepisu
         </a>
-        <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
+        <a class="nav-link btn btn-primary btn-sm"
+           sec:authorize="authenticated"
+           th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator)
                                 .createDeleteLinkInEditionMode()}"
-           th:href="@{${linkCreator}}"
-           href=""
-           class="btn btn-primary ">
+           th:href="@{${linkCreator}}">
             Usuń przepis z bazy
         </a>
-    </div>
-
+    </nav>
 
     <div class="container general-edition-all-fields-container">
         <div class="container text-center general-edition-all-fields">
             <div class="row general-edition-content-row">
-                <div class="col-xl text-left ">
+                <div class="col-xl text-center ">
                     <div class="recipe-title-time">
-                        <h2 th:text="${recipe.title}"></h2>
-                        <div class="votes-time-type">
-                            <div class="prep-time">
+                        <h2 th:text="${recipe.title}" class="mb-4"></h2>
+                        <br>
+                        <div class="fs-4 d-flex flex-column flex-md-row align-items-center justify-content-evenly justify-content-md-evenly h-100 w-100">
+                            <div class="prep-time mb-5">
                                 <i class="bi bi-clock"></i>
                                 <span th:text="|${recipe.prepTime} min.|"></span>
                             </div>
-                            <div class="meal-type">
-                                <span th:text="|Kategoria: ${recipe.category.name}|"></span>
+                            <div class="mb-5">
+                                <span>Kategoria:</span>
+                                <br>
+                                <span th:text="${recipe.category.name}"></span>
                             </div>
-                            <div class="meal-type">
-                                <span th:if="${recipe.mealType}" th:text="|Typ dania: ${recipe.mealType.translation.toLowerCase()}|"></span>
+                            <div class="mb-5">
+                                <span>Typ dania:</span>
+                                <br>
+                                <span th:if="${recipe.mealType}" th:text="${recipe.mealType.translation.toLowerCase()}"></span>
                             </div>
                         </div>
                         <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditTitleTimeTypeLink()}"
                            th:href="@{${linkCreator}}"
-                           href="" class="btn btn-primary save-recipe-btn">
+                           href="" class="btn btn-primary">
                             Edytuj
                         </a>
                     </div>
                 </div>
 
-                <div class="col-xl ">
+                <div class="col-xl mt-4 mt-xl-0">
                     <form th:action="@{/zapisz-zdjecie}"
                           th:object="${recipe}"
                           id="image-change-form"
@@ -71,7 +75,7 @@
 
                         <input type="file" id="avatar" name="avatar" accept="image/*" hidden="hidden" onchange="changeImage()" />
                         <input type="hidden" th:field="*{id}">
-                        <label for="avatar" class="btn btn-primary btn-sm" id="change-image">Zmień zdjęcie...</label>
+                        <label for="avatar" class="btn btn-primary" id="change-image">Zmień zdjęcie...</label>
                     </form>
                 </div>
             </div>
@@ -82,7 +86,7 @@
                             <h3>Składniki</h3>
                             <ul class="recipe-details-ul">
                                 <li th:each="ingredient: ${recipe.ingredients}"
-                                    class="recipe-details-ingredient">
+                                    class="recipe-details-ingredient px-2">
                                     <span th:text="${ingredient.name}"
                                           class="recipe-details-ingredient-name"></span>
                                     <span class="recipe-details-dots"></span>
@@ -93,7 +97,7 @@
                         </div>
                         <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditIngredientsLink()}"
                            th:href="@{${linkCreator}}"
-                           href="" class="btn btn-primary save-recipe-btn">
+                           href="" class="btn btn-primary">
                             Edytuj
                         </a>
                     </div>
@@ -111,7 +115,7 @@
                         </div>
                         <a th:with="linkCreator=${T(com.kulinaria.utils.LinkCreator).createEditRecipeStepsLink()}"
                            th:href="@{${linkCreator}}"
-                           href="" class="btn btn-primary save-recipe-btn">
+                           href="" class="btn btn-primary">
                             Edytuj
                         </a>
                     </div>

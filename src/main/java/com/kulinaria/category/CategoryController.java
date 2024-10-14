@@ -56,7 +56,7 @@ public class CategoryController {
         if (categoryOptional.isPresent()) {
             category = categoryOptional.get();
         } else if (recipeFilters.getCategoryName().toUpperCase().equals(CATEGORY_ALL.toUpperCase())) {
-            category = new Category(CATEGORY_ALL_PAGE_TITLE, "/img/home_background.jpg");
+            category = new Category(CATEGORY_ALL_PAGE_TITLE, "/categories/category5.jpg");
         }
         model.addAttribute("category", category);
     }
