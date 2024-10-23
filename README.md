@@ -10,9 +10,6 @@
 
 </h1> 
 
-
-<img referrerpolicy="no-referrer-when-downgrade" src="https://p.malpka.eu/matomo.php?idsite=11&amp;rec=1" style="border:0" alt="" />
-
 <h3 align="center">Technologies used:</h3>
 
 <h1 align="center">
